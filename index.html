@@ -103,7 +103,10 @@
 
   /* faixas de transição: altas e com curva suavizada (várias paradas), pra esfumar sem "linha" na emenda com o off-white.
      As seções claras são chapadas em --off, então a cor de chegada bate exatamente. */
-  .to-light, .to-dark, .to-carvao, .carvao-to-light { height: clamp(220px, 26vw, 360px); }
+  /* faixas de transição: altas o bastante pra esfumar, sem virar um vazio no mobile.
+     Regra: a seção que vem DEPOIS da faixa tem a MESMA cor sólida em que a faixa termina
+     (to-dark → preto, to-carvao → carvao) e não leva border-top, senão aparece degrau + linha. */
+  .to-light, .to-dark, .to-carvao, .carvao-to-light { height: clamp(150px, 20vw, 300px); }
   .to-light { background: linear-gradient(to bottom, var(--preto) 0%, rgba(7, 6, 5, 0.9) 14%, rgba(7, 6, 5, 0.68) 32%, rgba(7, 6, 5, 0.42) 52%, rgba(7, 6, 5, 0.2) 70%, rgba(7, 6, 5, 0.07) 86%, rgba(7, 6, 5, 0) 100%), var(--off); }
   .to-dark  { background: linear-gradient(to top, var(--preto) 0%, rgba(7, 6, 5, 0.9) 14%, rgba(7, 6, 5, 0.68) 32%, rgba(7, 6, 5, 0.42) 52%, rgba(7, 6, 5, 0.2) 70%, rgba(7, 6, 5, 0.07) 86%, rgba(7, 6, 5, 0) 100%), var(--off); }
   .to-carvao { background: linear-gradient(to top, var(--carvao) 0%, rgba(26, 20, 11, 0.9) 14%, rgba(26, 20, 11, 0.68) 32%, rgba(26, 20, 11, 0.42) 52%, rgba(26, 20, 11, 0.2) 70%, rgba(26, 20, 11, 0.07) 86%, rgba(26, 20, 11, 0) 100%), var(--off); }
@@ -261,7 +264,7 @@
   @media (max-width: 860px) { .pilares { grid-template-columns: 1fr; } }
 
   /* ---------- Lookbook editorial ---------- */
-  .lookbook { background: var(--off); color: var(--ink); padding: clamp(60px, 8vw, 110px) 0 clamp(110px, 13vw, 180px); overflow: hidden; }
+  .lookbook { background: var(--off); color: var(--ink); padding: clamp(60px, 8vw, 110px) 0 clamp(60px, 9vw, 130px); overflow: hidden; }
   .look-head { max-width: 820px; margin-bottom: clamp(50px, 7vw, 90px); }
   .look-head h2 { margin-top: 18px; }
   .look-head p { margin-top: 20px; color: var(--ink-soft); max-width: 56ch; }
@@ -344,7 +347,7 @@
   .card.playing .card-stop { display: block; }
 
   /* ---------- Vini & Zeca — as figuras ---------- */
-  .figuras { background: var(--carvao); border-top: 1px solid rgba(198, 161, 91, 0.22); padding: clamp(100px, 12vw, 160px) 0; overflow: hidden; }
+  .figuras { background: var(--carvao); padding: clamp(60px, 9vw, 130px) 0 clamp(100px, 12vw, 160px); overflow: hidden; }
   .figuras .ghost { position: absolute; left: 50%; top: 30px; transform: translateX(-50%); font-family: var(--didone); font-style: italic; font-weight: 400; font-size: clamp(4.6rem, 17vw, 15rem); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198, 161, 91, 0.14); white-space: nowrap; pointer-events: none; user-select: none; text-transform: none; }
   .fig-head { max-width: 860px; }
   .fig-head h2 { margin-top: 18px; }
@@ -373,7 +376,7 @@
   .botas-quote small { display: block; margin-top: 26px; font-family: var(--cinzel); font-size: 0.64rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--ouro-claro); }
 
   /* ---------- Internacional ---------- */
-  .inter { background: var(--off); color: var(--ink); padding: clamp(60px, 8vw, 120px) 0 clamp(90px, 12vw, 160px); overflow: hidden; }
+  .inter { background: var(--off); color: var(--ink); padding: clamp(50px, 8vw, 120px) 0 clamp(60px, 9vw, 130px); overflow: hidden; }
   .inter-tags img { width: 20px; height: 15px; object-fit: cover; vertical-align: -2px; margin-right: 8px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(34, 27, 16, 0.12); }
   .inter-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 110px); align-items: center; }
   .inter-copy { display: grid; gap: 22px; }
@@ -392,7 +395,7 @@
   @media (max-width: 900px) { .inter-grid { grid-template-columns: 1fr; } .collage { margin-bottom: 20%; order: -1; } }
 
   /* ---------- Feedbacks ---------- */
-  .depo { background: var(--preto); padding: clamp(100px, 13vw, 170px) 0; overflow: hidden; }
+  .depo { background: var(--preto); padding: clamp(60px, 9vw, 130px) 0; overflow: hidden; }
   .depo-bg { position: absolute; inset: 0; opacity: 0.22; }
   .depo-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
   .depo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, var(--preto) 0%, transparent 40%, transparent 60%, var(--preto) 100%); z-index: 1; }
@@ -409,7 +412,7 @@
   .depo-proof small { font-family: var(--cinzel); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(241, 234, 217, 0.6); }
 
   /* ---------- FAQ ---------- */
-  .faq { background: var(--off); color: var(--ink); padding: clamp(90px, 12vw, 150px) 0; }
+  .faq { background: var(--off); color: var(--ink); padding: clamp(50px, 8vw, 120px) 0 clamp(90px, 12vw, 150px); }
   .faq-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(30px, 6vw, 90px); align-items: start; }
   .faq-list { border-top: 1px solid var(--ouro-escuro); }
   .faq-list details { border-bottom: 1px solid rgba(147, 113, 46, 0.45); }
@@ -614,7 +617,7 @@
     </div>
   </section>
 
-  <div class="to-dark" aria-hidden="true"></div>
+  <div class="to-carvao" aria-hidden="true"></div>
 
   <!-- ======================= VINI & ZECA ======================= -->
   <section id="figuras" class="figuras" aria-label="Vini e Zeca">
