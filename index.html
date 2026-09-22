@@ -10,7 +10,7 @@
      ============================================================ -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Be Boots — Mais do que DJs. Artistas de Palco.</title>
+<title>Be Boots · Mais do que DJs. Artistas de Palco.</title>
 <meta name="description" content="Be Boots: Vini &amp; Zeca, a dupla que une DJ e voz ao vivo em shows para eventos alto padrão. +800 shows, +30.000 pessoas em um único evento, 6 países. Casamentos, aniversários, corporativo e festivais.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://boots.rkperformance.com.br/">
@@ -20,14 +20,14 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Be Boots">
-<meta property="og:title" content="Be Boots — Mais do que DJs. Artistas de Palco.">
+<meta property="og:title" content="Be Boots · Mais do que DJs. Artistas de Palco.">
 <meta property="og:description" content="Performance. Música. Conexão. +800 shows, +30.000 pessoas em um único evento, 6 países. O seu evento não precisa de mais um DJ. Precisa de um show.">
 <meta property="og:url" content="https://boots.rkperformance.com.br/">
 <meta property="og:image" content="https://boots.rkperformance.com.br/media/fotos/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Archivo:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@300;400;500;600&display=swap">
 <style>
   :root {
     --preto: #070605;        /* palco às escuras */
@@ -41,7 +41,7 @@
     --ink: #221B10;          /* texto sobre claro */
     --ink-soft: #6E6350;
     --sans: "Archivo", "Segoe UI", system-ui, sans-serif;
-    --didone: "Bodoni Moda", "Didot", Georgia, serif;
+    --didone: "Playfair Display", "Didot", Georgia, serif; /* estilo Vogue/editorial, mas com hairlines mais fortes que a Bodoni (pedido do cliente: melhor leitura) */
     --cinzel: "Archivo", "Segoe UI", system-ui, sans-serif; /* rótulos utilitários — Archivo caps, não mais Cinzel (competia com a Bodoni, lia "épico romano" em vez de editorial) */
     --gutter: clamp(20px, 5vw, 84px);
     --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -88,7 +88,7 @@
     font-family: var(--cinzel); font-weight: 500; font-size: 0.72rem;
     letter-spacing: 0.42em; text-transform: uppercase; color: var(--ouro);
   }
-  h1, h2, h3 { font-family: var(--didone); font-weight: 500; text-transform: uppercase; letter-spacing: 0.035em; line-height: 1.04; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--didone); font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.06; text-wrap: balance; }
   h2 { font-size: clamp(2.2rem, 5.2vw, 4.4rem); }
   h1 em, h2 em, h3 em, .em {
     font-style: italic; font-weight: 400; text-transform: none;
@@ -101,10 +101,13 @@
   .light { background: var(--off); color: var(--ink); }
   .light .eyebrow { color: var(--ouro-escuro); }
 
-  .to-light { height: 150px; background: linear-gradient(to bottom, var(--preto), var(--off)); }
-  .to-dark  { height: 150px; background: linear-gradient(to bottom, var(--off), var(--preto)); }
-  .to-carvao { height: 140px; background: linear-gradient(to bottom, var(--off), var(--carvao)); }
-  .carvao-to-light { height: 140px; background: linear-gradient(to bottom, var(--carvao), var(--off)); }
+  /* faixas de transição: altas e com curva suavizada (várias paradas), pra esfumar sem "linha" na emenda com o off-white.
+     As seções claras são chapadas em --off, então a cor de chegada bate exatamente. */
+  .to-light, .to-dark, .to-carvao, .carvao-to-light { height: clamp(220px, 26vw, 360px); }
+  .to-light { background: linear-gradient(to bottom, var(--preto) 0%, rgba(7, 6, 5, 0.9) 14%, rgba(7, 6, 5, 0.68) 32%, rgba(7, 6, 5, 0.42) 52%, rgba(7, 6, 5, 0.2) 70%, rgba(7, 6, 5, 0.07) 86%, rgba(7, 6, 5, 0) 100%), var(--off); }
+  .to-dark  { background: linear-gradient(to top, var(--preto) 0%, rgba(7, 6, 5, 0.9) 14%, rgba(7, 6, 5, 0.68) 32%, rgba(7, 6, 5, 0.42) 52%, rgba(7, 6, 5, 0.2) 70%, rgba(7, 6, 5, 0.07) 86%, rgba(7, 6, 5, 0) 100%), var(--off); }
+  .to-carvao { background: linear-gradient(to top, var(--carvao) 0%, rgba(26, 20, 11, 0.9) 14%, rgba(26, 20, 11, 0.68) 32%, rgba(26, 20, 11, 0.42) 52%, rgba(26, 20, 11, 0.2) 70%, rgba(26, 20, 11, 0.07) 86%, rgba(26, 20, 11, 0) 100%), var(--off); }
+  .carvao-to-light { background: linear-gradient(to bottom, var(--carvao) 0%, rgba(26, 20, 11, 0.9) 14%, rgba(26, 20, 11, 0.68) 32%, rgba(26, 20, 11, 0.42) 52%, rgba(26, 20, 11, 0.2) 70%, rgba(26, 20, 11, 0.07) 86%, rgba(26, 20, 11, 0) 100%), var(--off); }
 
   /* botão-cápsula */
   .btn {
@@ -195,18 +198,17 @@
       radial-gradient(ellipse 120% 70% at 50% 108%, rgba(7, 6, 5, 0.92), transparent 65%);
   }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--gutter); display: grid; justify-items: center; text-align: center; }
-  .hero h1 { font-size: clamp(4.2rem, 15.5vw, 14.5rem); line-height: 0.92; letter-spacing: 0.04em; font-weight: 500; animation: rise 1300ms var(--ease) 1700ms both; }
-  .hero h1 .foil { filter: drop-shadow(0 6px 40px rgba(0, 0, 0, 0.55)); }
-  .hero-claim {
-    margin-top: clamp(14px, 2.5vw, 26px);
-    font-family: var(--cinzel); font-weight: 500; font-size: clamp(0.72rem, 1.5vw, 1.02rem);
-    letter-spacing: 0.5em; text-transform: uppercase; color: var(--off);
-    text-shadow: 0 2px 26px rgba(0, 0, 0, 0.8);
-    animation: rise 1100ms var(--ease) 1950ms both;
+  /* headline em duas linhas (sem wordmark gigante — o cliente pediu pra deixar o vídeo respirar) */
+  .hero h1 { font-size: clamp(2.3rem, 6.4vw, 5.8rem); line-height: 1.02; letter-spacing: 0.02em; font-weight: 500; text-shadow: 0 4px 40px rgba(0, 0, 0, 0.7); animation: rise 1300ms var(--ease) 1700ms both; }
+  .hero h1 .w { display: block; }
+  .hero-sub {
+    margin-top: clamp(18px, 3vw, 30px); max-width: 60ch;
+    font-family: var(--cinzel); font-weight: 500; font-size: clamp(0.76rem, 1.35vw, 0.98rem);
+    letter-spacing: 0.28em; text-transform: uppercase; line-height: 1.9;
+    color: rgba(241, 234, 217, 0.9); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8);
+    animation: rise 1100ms var(--ease) 2000ms both;
   }
-  .hero-claim b { font-weight: 600; color: var(--ouro-claro); }
-  .hero-sub { margin-top: clamp(18px, 3vw, 30px); max-width: 52ch; font-size: 1.05rem; color: rgba(241, 234, 217, 0.88); text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7); animation: rise 1100ms var(--ease) 2100ms both; }
-  .hero-sub b { font-weight: 500; color: var(--ouro-claro); }
+  .hero-sub b { display: block; font-weight: 600; color: var(--ouro-claro); }
   .hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 30px; margin-top: clamp(24px, 3.5vw, 38px); animation: rise 1100ms var(--ease) 2250ms both; }
   .hero-proof {
     margin-top: clamp(28px, 4vw, 44px); padding-top: 22px; border-top: 1px solid rgba(198, 161, 91, 0.4);
@@ -247,8 +249,8 @@
   /* ---------- Manifesto / experiência ---------- */
   .manifesto { background: var(--carvao); border-top: 1px solid rgba(198, 161, 91, 0.22); padding: clamp(100px, 13vw, 180px) 0; overflow: hidden; }
   .manifesto .ghost { position: absolute; left: 50%; top: 26px; transform: translateX(-50%); font-family: var(--didone); font-weight: 500; text-transform: uppercase; font-size: clamp(5rem, 19vw, 16rem); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198, 161, 91, 0.13); white-space: nowrap; pointer-events: none; user-select: none; }
-  .manifesto-head { max-width: 940px; }
-  .manifesto-head h2 { margin-top: 20px; font-size: clamp(2.4rem, 6vw, 5.2rem); }
+  .manifesto-head { max-width: 1120px; }
+  .manifesto-head h2 { margin-top: 20px; font-size: clamp(2.2rem, 4.8vw, 4.4rem); }
   .manifesto-head .lead { margin-top: 28px; font-family: var(--didone); font-style: italic; font-size: clamp(1.3rem, 2.4vw, 1.75rem); font-weight: 400; line-height: 1.5; color: rgba(241, 234, 217, 0.9); max-width: 52ch; }
   .pilares { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(26px, 4vw, 60px); margin-top: clamp(50px, 7vw, 90px); }
   .pilar { padding-top: 22px; border-top: 1px solid rgba(198, 161, 91, 0.4); }
@@ -259,7 +261,7 @@
   @media (max-width: 860px) { .pilares { grid-template-columns: 1fr; } }
 
   /* ---------- Lookbook editorial ---------- */
-  .lookbook { background: linear-gradient(180deg, var(--off) 0%, var(--off-2) 100%); color: var(--ink); padding: clamp(90px, 11vw, 150px) 0 clamp(110px, 13vw, 180px); overflow: hidden; }
+  .lookbook { background: var(--off); color: var(--ink); padding: clamp(60px, 8vw, 110px) 0 clamp(110px, 13vw, 180px); overflow: hidden; }
   .look-head { max-width: 820px; margin-bottom: clamp(50px, 7vw, 90px); }
   .look-head h2 { margin-top: 18px; }
   .look-head p { margin-top: 20px; color: var(--ink-soft); max-width: 56ch; }
@@ -352,6 +354,8 @@
   .fig img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 4; transition: transform 1400ms var(--ease); }
   .fig:hover img { transform: scale(1.04); }
   .fig::after { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(235, 217, 169, 0.4); pointer-events: none; }
+  .fig figcaption { position: absolute; left: 0; right: 0; bottom: 22px; z-index: 2; text-align: center; font-family: var(--didone); font-style: italic; font-size: clamp(1.4rem, 2.4vw, 2rem); color: var(--ouro-claro); text-shadow: 0 2px 20px rgba(0, 0, 0, 0.85); pointer-events: none; }
+  .fig::before { content: ""; position: absolute; inset: auto 0 0 0; height: 38%; z-index: 1; background: linear-gradient(to top, rgba(7, 6, 5, 0.75), transparent); pointer-events: none; }
   .fig-copy { display: grid; gap: 18px; margin-top: clamp(34px, 5vw, 50px); max-width: 62ch; }
   .fig-copy p { color: rgba(241, 234, 217, 0.72); }
   .fig-copy p b { font-weight: 500; color: var(--ouro-claro); }
@@ -371,7 +375,8 @@
   .botas-quote small { display: block; margin-top: 26px; font-family: var(--cinzel); font-size: 0.64rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--ouro-claro); }
 
   /* ---------- Internacional ---------- */
-  .inter { background: linear-gradient(180deg, var(--off) 0%, var(--off-2) 100%); color: var(--ink); padding: clamp(90px, 12vw, 160px) 0; overflow: hidden; }
+  .inter { background: var(--off); color: var(--ink); padding: clamp(60px, 8vw, 120px) 0 clamp(90px, 12vw, 160px); overflow: hidden; }
+  .inter-tags img { width: 20px; height: 15px; object-fit: cover; vertical-align: -2px; margin-right: 8px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(34, 27, 16, 0.12); }
   .inter-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 110px); align-items: center; }
   .inter-copy { display: grid; gap: 22px; }
   .inter-copy h2 { margin-top: 6px; }
@@ -474,9 +479,9 @@
   "@context": "https://schema.org",
   "@type": ["MusicGroup", "LocalBusiness"],
   "@id": "https://boots.rkperformance.com.br/#beboots",
-  "name": "Be Boots — Música e Entretenimento",
+  "name": "Be Boots · Música e Entretenimento",
   "alternateName": "Be Boots",
-  "description": "Dupla de artistas de palco — DJ e voz ao vivo — para eventos alto padrão: casamentos, 15 anos, aniversários, eventos corporativos e festivais. Mais de 800 shows, mais de 30.000 pessoas em um único evento, 6 países.",
+  "description": "Dupla de artistas de palco, DJ e voz ao vivo, para eventos de alto padrão: casamentos, 15 anos, aniversários, eventos corporativos e festivais. Mais de 800 shows, mais de 30.000 pessoas em um único evento, 6 países.",
   "url": "https://boots.rkperformance.com.br/",
   "image": "https://boots.rkperformance.com.br/media/fotos/og-image.jpg",
   "logo": "https://boots.rkperformance.com.br/media/logo-script.png",
@@ -499,7 +504,7 @@
 <div class="intro" aria-hidden="true"><div><img src="media/logo-script.png" alt=""><div class="intro-line"></div></div></div>
 
 <header id="topo">
-  <a class="brand" href="#inicio" aria-label="Be Boots — início"><img src="media/logo-script.png" alt="Be Boots — Música e Entretenimento" width="1224" height="590"></a>
+  <a class="brand" href="#inicio" aria-label="Be Boots: início"><img src="media/logo-script.png" alt="Be Boots, Música e Entretenimento" width="1224" height="590"></a>
   <nav aria-label="Seções do site">
     <ul>
       <li><a href="#experiencia">A experiência</a></li>
@@ -513,7 +518,7 @@
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuFull">Menu</button>
 </header>
 <div class="menu-full" id="menuFull">
-  <p class="eyebrow">Be Boots — Música e Entretenimento</p>
+  <p class="eyebrow">Be Boots · Música e Entretenimento</p>
   <a href="#experiencia">A experiência</a>
   <a href="#figuras">Vini &amp; Zeca</a>
   <a href="#eventos">Eventos</a>
@@ -529,9 +534,8 @@
       <video id="heroVideo" autoplay muted loop playsinline preload="auto"></video>
     </div>
     <div class="hero-inner">
-      <h1 aria-label="Be Boots"><span class="foil">Be Boots</span></h1>
-      <p class="hero-claim">Mais do que DJs — <b>artistas de palco</b></p>
-      <p class="hero-sub">O seu evento não precisa de mais um DJ. <b>Precisa de um show.</b></p>
+      <h1><span class="w">Mais do que DJs.</span><span class="w">Artistas de <em>palco</em>.</span></h1>
+      <p class="hero-sub">O seu evento não precisa de mais um DJ.<b>Precisa de um show.</b></p>
       <div class="hero-actions">
         <a class="btn btn-solid" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener"><span>Consultar a minha data</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <a class="btn" href="#videos"><span>Assistir aos shows</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v11M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
@@ -563,7 +567,7 @@
     <div class="wrap parceiros reveal">
       <p class="eyebrow">Palcos e parceiros</p>
       <ul>
-        <li>Sebrae</li><li>Vivo</li><li>Abrasel</li><li>Senac</li><li>Club Med</li><li>Porto Seguro</li><li>ITForum</li><li>Grand Cru</li><li>Rainbow Fest</li><li>Amnésia</li><li>Il Colle</li><li>Simpress</li>
+        <li>Prefeitura de Porto Seguro</li><li>Prefeitura de Piraju</li><li>D-Edge</li><li>Banco do Brasil</li><li>Fidenza Village · Itália</li><li>Mama Shelter · Portugal</li>
       </ul>
     </div>
   </section>
@@ -573,24 +577,24 @@
     <span class="ghost" aria-hidden="true">Show</span>
     <div class="wrap manifesto-head">
       <p class="eyebrow reveal">A experiência</p>
-      <h2 class="reveal d1">Não é sobre apertar botões.<br>É sobre dominar o <em>palco</em>.</h2>
+      <h2 class="reveal d1">Não é sobre colocar<br>uma música para tocar.<br>É sobre dominar o <em>palco</em>.</h2>
       <p class="lead reveal d2">Música, voz, interação e presença. Tudo ao vivo, tudo Be Boots.</p>
     </div>
     <div class="wrap pilares">
       <div class="pilar reveal">
         <b><span>I</span> Duas forças no palco</b>
-        <p>Um DJ que conduz a pista com precisão e personalidade — e uma voz que transforma a festa em um verdadeiro acontecimento. O set não toca sozinho: ele acontece com a gente no meio da sua pista.</p>
+        <p>Um DJ que conduz a pista com precisão e personalidade; e, uma voz que transforma a festa em um verdadeiro acontecimento. O set não toca sozinho: ele acontece com a gente no meio da sua pista.</p>
       </div>
       <div class="pilar reveal d1">
         <b><span>II</span> Direção musical refinada</b>
-        <p>Da música disco ao funk, do pop rock ao samba: caminhamos por todos os estilos para a sua festa ser única — a curadoria nasce do seu evento, não de um roteiro pronto.</p>
+        <p>Da música disco ao funk, do pop rock ao samba: caminhamos por todos os estilos para a sua festa ser única. A curadoria nasce do seu evento, não de um roteiro pronto.</p>
       </div>
       <div class="pilar reveal d2">
         <b><span>III</span> Condução de público</b>
         <p>Já foram mais de 30.000 pessoas cantando juntas num único evento. Mas seja um festival ou um jantar de 50 convidados, a régua é a mesma: na nossa pista, quem brilha é você.</p>
       </div>
     </div>
-    <div class="wrap"><p class="manifesto-fecho reveal">Tudo feito pra quem vive experiências — não apenas momentos.</p></div>
+    <div class="wrap"><p class="manifesto-fecho reveal">Tudo feito para quem vive experiências e não apenas momentos.</p></div>
   </section>
 
   <div class="carvao-to-light" aria-hidden="true"></div>
@@ -600,14 +604,14 @@
     <div class="wrap look-head">
       <p class="eyebrow reveal">Editorial</p>
       <h2 class="reveal d1">Moda não é roupa.<br>É <em>assinatura</em>.</h2>
-      <p class="reveal d2">Cada apresentação ganha uma identidade visual única, alinhada à atmosfera do evento. Já são 13 looks autorais no repertório da dupla — e, muitas vezes, é a própria anfitriã quem escolhe o figurino da Be Boots para compor o cenário que ela construiu.</p>
+      <p class="reveal d2">Cada apresentação ganha uma identidade visual única, alinhada à atmosfera do evento. Já são 13 looks autorais no repertório da dupla. Muitas vezes, é a própria anfitriã quem escolhe o figurino da Be Boots para compor o cenário que ela construiu.</p>
     </div>
     <div class="wrap look-grid">
       <figure class="look a reveal" data-parallax="-0.04"><img src="media/fotos/g-duo-sentado.jpg" alt="Vini e Zeca em ensaio editorial dourado, camisas de seda preta" width="1067" height="1600" loading="lazy"></figure>
       <figure class="look b reveal d1" data-parallax="0.05"><img src="media/fotos/g-faceoff.jpg" alt="Retrato em dupla frente a frente, microfone e fones na mão, luz dourada" width="1067" height="1600" loading="lazy"></figure>
       <figure class="look c reveal"><img src="media/fotos/g-costas.jpg" alt="A dupla de costas, fones e microfone atrás do corpo" width="1600" height="1200" loading="lazy"></figure>
       <div class="look-quote reveal d2">
-        <p>“Não é sobre vaidade. É sobre propósito — no show e na vida.”</p>
+        <p>“Não é sobre vaidade. É sobre propósito, no show e na vida.”</p>
         <small>— Be Boots</small>
       </div>
     </div>
@@ -620,18 +624,18 @@
     <div class="wrap fig-head">
       <p class="eyebrow reveal">As figuras</p>
       <h2 class="reveal d1">Vini &amp; <em>Zeca</em>.</h2>
-      <p class="lead reveal d2">Quem contrata a Be Boots não leva só um show — leva os dois artistas que os convidados vão querer conhecer no fim da noite.</p>
+      <p class="lead reveal d2">Quem contrata a Be Boots não leva só um show: leva os dois artistas que os convidados vão querer conhecer no fim da noite.</p>
     </div>
     <div class="wrap fig-grid">
-      <figure class="fig reveal"><img src="media/fotos/g-solo-1.jpg" alt="Retrato editorial de um dos artistas da Be Boots, cabelo ao vento" width="1067" height="1600" loading="lazy"></figure>
-      <figure class="fig reveal d1"><img src="media/fotos/g-solo-2.jpg" alt="Retrato editorial do outro artista da Be Boots, sorrindo, cabelo em movimento" width="1067" height="1600" loading="lazy"></figure>
+      <figure class="fig reveal"><img src="media/fotos/g-solo-1.jpg" alt="Vini, retrato editorial com cabelo ao vento" width="1067" height="1600" loading="lazy"><figcaption>Vini</figcaption></figure>
+      <figure class="fig reveal d1"><img src="media/fotos/g-solo-2.jpg" alt="Zeca, retrato editorial sorrindo, cabelo em movimento" width="1067" height="1600" loading="lazy"><figcaption>Zeca</figcaption></figure>
     </div>
     <div class="wrap fig-copy reveal d2">
-      <p>Cinco anos de estrada, construídos com <b>trabalho duro, disciplina, constância e verdade</b>. Uma dupla que canta, mixa, se veste para o seu tema e conduz a noite de dentro da pista — não de trás de uma mesa.</p>
-      <p>É por isso que tantas clientes terminam o evento com dois amigos novos: <b>elas não contratam só a Be Boots. Elas querem o Vini e o Zeca.</b></p>
+      <p>Cinco anos de estrada construídos com <b>constância, autenticidade e verdade</b>. Uma dupla que canta, mixa, se veste para o seu tema e conduz a festa de dentro da pista; e, não atrás de uma mesa.</p>
+      <p>É por isso que quem contrata Be Boots termina o evento com dois amigos novos! <b>Não é apenas a dupla de DJs. É o Vini e o Zeca.</b></p>
     </div>
     <div class="wrap fig-video reveal d3">
-      <article class="card fig-card" data-video="media/videos/v-pitch.mp4" data-title="Muito prazer — a dupla se apresenta">
+      <article class="card fig-card" data-video="media/videos/v-pitch.mp4" data-title="Muito prazer: a dupla se apresenta">
         <img src="media/videos/poster-pitch.jpg" alt="" loading="lazy">
         <button class="card-play" type="button" aria-label="Assistir: Muito prazer"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
         <button class="card-stop" type="button">Fechar</button>
@@ -651,22 +655,22 @@
       <article class="ato reveal">
         <span class="n" aria-hidden="true">Ato I</span>
         <h3>Casamentos</h3>
-        <p><span class="q">"Ser a escolha de tantos casais tem sido um dos pontos mais emocionantes da nossa carreira."</span> Curadoria musical com os noivos, leitura fina da pista e a energia certa em cada fase da festa — até o último convidado.</p>
+        <p><span class="q">"Ser a escolha de tantos casais tem sido um dos pontos mais emocionantes da nossa carreira."</span> Curadoria musical com os noivos, leitura fina da pista e a energia certa em cada fase da festa, até o último convidado.</p>
       </article>
       <article class="ato reveal">
         <span class="n" aria-hidden="true">Ato II</span>
         <h3>15 anos &amp; aniversários</h3>
-        <p>Os 40, 50, 60, 70 são os novos 15. <span class="q">"Na nossa pista, ela é a dona absoluta da noite"</span> — debutantes e aniversariantes vivem a festa como protagonistas, não como espectadoras.</p>
+        <p>Os 40, 50, 60, 70 são os novos 15. <span class="q">"Na nossa pista, ela é a dona absoluta da noite":</span> debutantes e aniversariantes vivem a festa como protagonistas, não como espectadoras.</p>
       </article>
       <article class="ato reveal">
         <span class="n" aria-hidden="true">Ato III</span>
         <h3>Corporativo &amp; marcas</h3>
-        <p>Moda, música e Be Boots num só lugar: convenções, premiações e eventos de marca — como o Club Med Trancoso e o Fidenza Village, na Itália — com repertório e figurino sob o tema da ocasião.</p>
+        <p>Moda, música e Be Boots num só lugar: convenções, premiações e eventos de marca, como o Banco do Brasil, o Fidenza Village, na Itália, e o Mama Shelter, em Portugal, com repertório e figurino sob o tema da ocasião.</p>
       </article>
       <article class="ato reveal">
         <span class="n" aria-hidden="true">Ato IV</span>
         <h3>Festivais &amp; grandes palcos</h3>
-        <p>Da abertura do Carnaval de Porto Seguro ao Rainbow Fest e aos festivais da Itália: já foram mais de 30.000 pessoas reunidas em um único evento — quando o palco cresce, o show cresce junto.</p>
+        <p>Da abertura do Carnaval de Porto Seguro ao Rainbow Fest e aos festivais da Itália: já foram mais de 30.000 pessoas reunidas em um único evento. Quando o palco cresce, o show cresce junto.</p>
       </article>
     </div>
   </section>
@@ -679,7 +683,7 @@
         <h2 class="reveal d1">O show, ao <em>vivo</em>.</h2>
       </div>
       <div class="reveal d2">
-        <p>Nada aqui é ensaio nem banco de imagem — é o que os seus convidados vão viver. Toque num vídeo e ouça com som.</p>
+        <p>Nada aqui é ensaio nem banco de imagem: é o que os seus convidados vão viver. Toque num vídeo e ouça com som.</p>
         <div class="strip-nav" style="margin-top: 22px">
           <button class="strip-btn" type="button" data-dir="-1" aria-label="Vídeo anterior"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M8 4L3 9l5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <button class="strip-btn" type="button" data-dir="1" aria-label="Próximo vídeo"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -687,37 +691,37 @@
       </div>
     </div>
     <div class="strip" id="strip">
-      <article class="card reveal" data-video="media/videos/v-carnaval.mp4" data-title="Carnaval de Porto Seguro — abertura oficial">
-        <img src="media/videos/poster-carnaval.jpg" alt="" width="1280" height="720" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Carnaval de Porto Seguro"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Porto Seguro</h3><p>Abertura do Carnaval</p></div>
-      </article>
-      <article class="card reveal d1" data-video="media/videos/v-casamento.mp4" data-title="Casamento — a noiva no centro da festa">
+      <article class="card reveal" data-video="media/videos/v-casamento.mp4" data-title="Casamento: a noiva no centro da festa">
         <img src="media/videos/poster-casamento.jpg" alt="" width="1280" height="720" loading="lazy">
         <button class="card-play" type="button" aria-label="Assistir: Casamento"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
         <button class="card-stop" type="button">Fechar</button>
         <div class="card-info"><h3>Casamento</h3><p>A noiva no centro da festa · ouro</p></div>
       </article>
-      <article class="card reveal d2" data-video="media/videos/v-oficial.mp4" data-title="O filme oficial — uma noite com a Be Boots">
+      <article class="card reveal d1" data-video="media/videos/v-oficial.mp4" data-title="O filme oficial: uma noite com a Be Boots">
         <img src="media/videos/poster-oficial.jpg" alt="" width="720" height="1280" loading="lazy">
         <button class="card-play" type="button" aria-label="Assistir: O filme oficial"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
         <button class="card-stop" type="button">Fechar</button>
         <div class="card-info"><h3>O filme oficial</h3><p>Uma noite de gala · do tapete ao palco</p></div>
       </article>
-      <article class="card reveal d3" data-video="media/videos/v-corporativo.mp4" data-title="Corporativo — evento de marca">
-        <img src="media/videos/poster-corporativo.jpg" alt="" width="720" height="1280" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Corporativo"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Corporativo</h3><p>Evento de marca · convenções e prêmios</p></div>
-      </article>
-      <article class="card reveal d3" data-video="media/videos/v-rainbow.mp4" data-title="Rainbow Fest — o 700º show">
+      <article class="card reveal d2" data-video="media/videos/v-rainbow.mp4" data-title="Rainbow Fest: o 700º show">
         <img src="media/videos/poster-rainbow.jpg" alt="" width="720" height="1280" loading="lazy">
         <button class="card-play" type="button" aria-label="Assistir: Rainbow Fest"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
         <button class="card-stop" type="button">Fechar</button>
         <div class="card-info"><h3>Rainbow Fest</h3><p>O 700º show · Juiz de Fora</p></div>
       </article>
-      <article class="card reveal d3" data-video="media/videos/v-15anos.mp4" data-title="15 anos — o depoimento da debutante">
+      <article class="card reveal d3" data-video="media/videos/v-carnaval.mp4" data-title="Carnaval de Porto Seguro: abertura oficial">
+        <img src="media/videos/poster-carnaval.jpg" alt="" width="1280" height="720" loading="lazy">
+        <button class="card-play" type="button" aria-label="Assistir: Carnaval de Porto Seguro"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button">Fechar</button>
+        <div class="card-info"><h3>Porto Seguro</h3><p>Abertura do Carnaval</p></div>
+      </article>
+      <article class="card reveal d3" data-video="media/videos/v-corporativo.mp4" data-title="Corporativo: evento de marca">
+        <img src="media/videos/poster-corporativo.jpg" alt="" width="720" height="1280" loading="lazy">
+        <button class="card-play" type="button" aria-label="Assistir: Corporativo"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button">Fechar</button>
+        <div class="card-info"><h3>Corporativo</h3><p>Evento de marca · convenções e prêmios</p></div>
+      </article>
+      <article class="card reveal d3" data-video="media/videos/v-15anos.mp4" data-title="15 anos: o depoimento da debutante">
         <img src="media/videos/poster-15anos.jpg" alt="" width="720" height="1280" loading="lazy">
         <button class="card-play" type="button" aria-label="Assistir: 15 anos"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
         <button class="card-stop" type="button">Fechar</button>
@@ -741,7 +745,7 @@
   <section class="botas" aria-label="A história do nome Be Boots">
     <video autoplay muted loop playsinline preload="metadata" poster="media/videos/poster-boots.jpg" aria-hidden="true"><source src="media/videos/boots.mp4" type="video/mp4"></video>
     <div class="botas-quote reveal">
-      <p>A estrada é longa. As botas, resistentes.<br>Não pelo que são feitas — mas por quem as calça.</p>
+      <p>A estrada é longa. As botas, resistentes.<br>Não pelo que são feitas, mas por quem as calça.</p>
       <small>— Be Boots</small>
     </div>
   </section>
@@ -754,10 +758,10 @@
       <div class="inter-copy">
         <p class="eyebrow reveal">Do Brasil para o mundo</p>
         <h2 class="reveal d1">Seis países.<br>Uma <em>pista</em>.</h2>
-        <p class="lead reveal d2">De São Paulo aos festivais da Itália, de Ibiza a Portugal: mais de 100 eventos internacionais — e contando.</p>
-        <p class="reveal d2">A temporada europeia já passou por palcos e casas como o Fidenza Village e o Il Colle, na Itália, e pela Sardenha — com o mesmo cuidado de sempre: estilo, energia e experiências inesquecíveis, em qualquer idioma.</p>
+        <p class="lead reveal d2">De São Paulo aos festivais da Itália, de Ibiza a Portugal: mais de 100 eventos internacionais, e contando.</p>
+        <p class="reveal d2">A temporada europeia já passou por palcos e casas como Fidenza Village, Il Colle e casamentos na Itália, com o mesmo cuidado de sempre: estilo, energia e experiências inesquecíveis em qualquer idioma.</p>
         <ul class="inter-tags reveal d3">
-          <li>Brasil</li><li>Itália</li><li>Espanha · Ibiza</li><li>Portugal</li><li>França</li><li>Argentina</li>
+          <li><img src="media/flags/br.png" alt="" width="20" height="15">Brasil</li><li><img src="media/flags/it.png" alt="" width="20" height="15">Itália</li><li><img src="media/flags/es.png" alt="" width="20" height="15">Espanha · Ibiza</li><li><img src="media/flags/pt.png" alt="" width="20" height="15">Portugal</li><li><img src="media/flags/fr.png" alt="" width="20" height="15">França</li><li><img src="media/flags/ar.png" alt="" width="20" height="15">Argentina</li>
         </ul>
       </div>
       <figure class="collage reveal">
@@ -776,9 +780,9 @@
       <p class="eyebrow reveal">Feedbacks</p>
       <h2 class="reveal d1">A palavra de quem <em>viveu</em>.</h2>
       <div class="depo-list">
-        <figure class="depo-item reveal"><blockquote>Todo mundo amou o show — e eu também! Vocês foram um dos pontos principais da festa. As músicas, muito boas... eu amei muito, fiquei apaixonada.</blockquote><figcaption>Debutante <span>— festa de 15 anos · depoimento em vídeo</span></figcaption></figure>
-        <figure class="depo-item reveal"><blockquote>Tive uma bênção de Deus, foi eu poder dançar com o som cheio de luz e energia de vocês dois. Obrigado.</blockquote><figcaption>Convidado <span>— mensagem de cliente</span></figcaption></figure>
-        <figure class="depo-item reveal"><blockquote>Muito obrigada por abrilhantarem minha comemoração. Adorei!</blockquote><figcaption>Aniversariante <span>— mensagem de cliente</span></figcaption></figure>
+        <figure class="depo-item reveal"><blockquote>Todo mundo amou o show, e eu também! Vocês foram um dos pontos principais da festa. As músicas, muito boas... eu amei muito, fiquei apaixonada.</blockquote><figcaption>Debutante <span>· festa de 15 anos · depoimento em vídeo</span></figcaption></figure>
+        <figure class="depo-item reveal"><blockquote>Tive uma bênção de Deus, foi eu poder dançar com o som cheio de luz e energia de vocês dois. Obrigado.</blockquote><figcaption>Convidado <span>· mensagem de cliente</span></figcaption></figure>
+        <figure class="depo-item reveal"><blockquote>Muito obrigada por abrilhantarem minha comemoração. Adorei!</blockquote><figcaption>Aniversariante <span>· mensagem de cliente</span></figcaption></figure>
       </div>
     </div>
   </section>
@@ -793,11 +797,11 @@
         <h2 class="reveal d1">Antes de <em>fechar</em>.</h2>
       </div>
       <div class="faq-list reveal d1">
-        <details><summary>O que exatamente a Be Boots faz no evento?</summary><p>Um show completo: mixagem, voz ao vivo, interação e performance — dois artistas no comando da pista do começo ao fim. Não é um DJ atrás da mesa; é a festa acontecendo no meio dos seus convidados.</p></details>
+        <details><summary>O que exatamente a Be Boots faz no evento?</summary><p>Um show completo: mixagem, voz ao vivo, interação e performance, com dois artistas no comando da pista do começo ao fim. Não é um DJ atrás da mesa; é a festa acontecendo no meio dos seus convidados.</p></details>
         <details><summary>Vocês tocam o estilo que eu quero?</summary><p>Sim. Da música disco ao funk, do pop rock ao samba, caminhamos por todos os estilos. A curadoria é desenhada com você, a partir do tema e do público do seu evento.</p></details>
-        <details><summary>Como funcionam o figurino e o tema?</summary><p>Cada evento recebe um figurino autoral, pensado para a estética da festa — já são 13 looks no repertório da dupla. Se você tem um tema, a dupla se veste para fazer parte do cenário que você construiu.</p></details>
-        <details><summary>Vocês atendem fora de São Paulo? E fora do Brasil?</summary><p>Sim — já são mais de 20 cidades e 6 países, com mais de 100 eventos internacionais. Deslocamento e logística entram detalhados na proposta, sem surpresas.</p></details>
-        <details><summary>Como funciona o investimento?</summary><p>Cada show é desenhado sob medida — formato, figurino, logística e praça mudam o valor. Depois da reunião, a proposta sai personalizada para o seu evento: cada tema é respeitado com exclusividade e cuidado, do repertório ao figurino.</p></details>
+        <details><summary>Como funcionam o figurino e o tema?</summary><p>Cada evento recebe um figurino autoral, pensado para a estética da festa: já são 13 looks no repertório da dupla. Se você tem um tema, a dupla se veste para fazer parte do cenário que você construiu.</p></details>
+        <details><summary>Vocês atendem fora de São Paulo? E fora do Brasil?</summary><p>Sim. Já são mais de 20 cidades e 6 países, com mais de 100 eventos internacionais. Deslocamento e logística entram detalhados na proposta, sem surpresas.</p></details>
+        <details><summary>Como funciona o investimento?</summary><p>Cada show é desenhado sob medida: formato, figurino, logística e praça mudam o valor. Depois da reunião, a proposta sai personalizada para o seu evento: cada tema é respeitado com exclusividade e cuidado, do repertório ao figurino.</p></details>
         <details><summary>Como eu reservo a minha data?</summary><p><a href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Quero%20consultar%20a%20disponibilidade%20da%20minha%20data.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener">Chama a gente no WhatsApp</a> com a data, a cidade e o tipo de evento. A gente confirma a disponibilidade e agenda uma reunião para desenhar o show do seu evento.</p></details>
       </div>
     </div>
@@ -819,7 +823,7 @@
 <footer>
   <span class="foot-ghost" aria-hidden="true">Be Boots</span>
   <div class="foot">
-    <a class="brand foot-logo" href="#inicio" aria-label="Be Boots — início"><img src="media/logo-script.png" alt="Be Boots — Música e Entretenimento" width="1224" height="590"></a>
+    <a class="brand foot-logo" href="#inicio" aria-label="Be Boots: início"><img src="media/logo-script.png" alt="Be Boots, Música e Entretenimento" width="1224" height="590"></a>
     <a href="https://www.instagram.com/be.boots/" target="_blank" rel="noopener">@be.boots</a>
     <a href="https://www.facebook.com/djsbeboots/" target="_blank" rel="noopener">Facebook</a>
     <span>São Paulo · Brasil &amp; exterior</span>
