@@ -411,7 +411,7 @@
   .depo .wrap { position: relative; z-index: 2; }
   .depo-list { display: grid; gap: clamp(50px, 7vw, 90px); margin-top: clamp(40px, 6vw, 70px); }
   .depo-item { position: relative; max-width: 800px; display: grid; gap: 18px; }
-  .depo-item:nth-child(2) { margin-left: auto; }
+  .depo-item:nth-child(even) { margin-left: auto; }
   .depo-item::before { content: "“"; position: absolute; left: -0.32em; top: -0.5em; font-family: var(--didone); font-size: 9rem; line-height: 1; color: var(--ouro); opacity: 0.35; }
   .depo-item blockquote { font-family: var(--didone); font-weight: 400; font-style: italic; font-size: clamp(1.35rem, 2.7vw, 2rem); line-height: 1.4; }
   .depo-item figcaption { font-family: var(--cinzel); font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ouro-claro); }
@@ -791,7 +791,11 @@
       <p class="eyebrow reveal">Feedbacks</p>
       <h2 class="reveal d1">A palavra de quem <em>viveu</em>.</h2>
       <div class="depo-list">
-        <!-- Cliente pediu depoimentos com nome (22/09). Os 2 anônimos saíram; entram de volta com nome + evento quando ele mandar. -->
+        <!-- Avaliações reais do Google (prints em ../depoimentos foto/, 22/09) + depoimento em vídeo do destaque do IG. -->
+        <figure class="depo-item reveal"><blockquote>No nosso casamento, souberam sentir o clima da festa, escolher as músicas certas e não deixou ninguém parado na pista. Foi simplesmente perfeito e tornou nossa noite ainda mais especial. Com certeza recomendamos de olhos fechados!</blockquote><figcaption>Herica Matos <span>· casamento · avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal"><blockquote>Simplesmente incrível. Não é só música, é experiência. Quando eles tocam, parece que tudo ao redor muda, a energia, o clima, as pessoas... é difícil até descrever. Você sente.</blockquote><figcaption>Raphael Vilela Dias <span>· avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal"><blockquote>Nosso muito obrigada à Beboots por tornar nossas Bodas ainda mais especiais! Foi um sucesso, e a alegria dos nossos convidados teve um toque especial graças a vocês. Gratidão pela parceria e pelo excelente trabalho!</blockquote><figcaption>Cíntia Costa Soares <span>· bodas · avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal"><blockquote lang="it">I Be Boots sono sempre una garanzia! Musica bellissima, loro magnetici e un intrattenimento davvero coinvolgente. Portano un'atmosfera latina pazzesca e rendono ogni serata indimenticabile!</blockquote><figcaption>Davide D. <span>· Itália · avaliação 5 estrelas no Google</span></figcaption></figure>
         <figure class="depo-item reveal"><blockquote>Todo mundo amou o show, e eu também! Vocês foram um dos pontos principais da festa. As músicas, muito boas... eu amei muito, fiquei apaixonada.</blockquote><figcaption>Debutante <span>· festa de 15 anos · depoimento em vídeo</span></figcaption></figure>
       </div>
     </div>
