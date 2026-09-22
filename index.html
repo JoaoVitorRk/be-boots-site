@@ -191,35 +191,44 @@
   @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
   /* ---------- HERO: a fama primeiro ---------- */
-  .hero { position: relative; min-height: 100svh; display: grid; align-content: end; overflow: hidden; background: var(--preto); padding-bottom: clamp(40px, 6vh, 80px); }
+  /* v5.5 "editorial de luxo": o vídeo manda (pedido do cliente), mas com os códigos de marca de
+     luxo em volta: moldura dourada fina, caps espaçado + um itálico grande, rótulos pequenos nos
+     cantos e grade quente no vídeo (tira o neon). Sem wordmark, sem "mais do que DJs". */
+  .hero { position: relative; min-height: 100svh; display: grid; align-content: end; overflow: hidden; background: var(--preto); padding-bottom: clamp(100px, 12vh, 150px); }
   .hero-bg { position: absolute; inset: 0; }
-  .hero-bg video { width: 100%; height: 100%; object-fit: cover; }
+  .hero-bg video { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) sepia(0.24) contrast(1.06) brightness(0.94); }
   .hero-bg::after {
     content: ""; position: absolute; inset: 0;
     background:
-      linear-gradient(to bottom, rgba(7, 6, 5, 0.58) 0%, rgba(7, 6, 5, 0.12) 26%, rgba(7, 6, 5, 0.4) 58%, rgba(7, 6, 5, 0.96) 100%),
-      radial-gradient(ellipse 120% 70% at 50% 108%, rgba(7, 6, 5, 0.92), transparent 65%);
+      linear-gradient(to bottom, rgba(7, 6, 5, 0.55) 0%, rgba(7, 6, 5, 0.1) 26%, rgba(7, 6, 5, 0.38) 58%, rgba(7, 6, 5, 0.95) 100%),
+      radial-gradient(ellipse 120% 70% at 50% 108%, rgba(7, 6, 5, 0.9), transparent 65%),
+      radial-gradient(ellipse 80% 80% at 50% 45%, transparent 50%, rgba(7, 6, 5, 0.55) 100%);
   }
+  .hero-frame { position: absolute; z-index: 2; inset: 96px 26px 26px; border: 1px solid rgba(198, 161, 91, 0.38); pointer-events: none; animation: fade 1600ms var(--ease) 1500ms both; }
+  .hero-frame::before, .hero-frame::after { content: ""; position: absolute; width: 7px; height: 7px; background: var(--ouro); transform: rotate(45deg); }
+  .hero-frame::before { top: -4px; left: -4px; }
+  .hero-frame::after { bottom: -4px; right: -4px; }
+  .hero-corner { position: absolute; z-index: 3; margin: 0; font-family: var(--cinzel); font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(241, 234, 217, 0.62); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8); animation: rise 1100ms var(--ease) 2500ms both; }
+  .hero-corner strong { color: var(--ouro-claro); font-weight: 600; }
+  .hero-corner-l { left: 46px; bottom: 44px; }
+  .hero-corner-r { right: 46px; top: 114px; text-align: right; }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--gutter); display: grid; justify-items: center; text-align: center; }
-  /* hero minimalista (pedido do cliente, 22/09): o vídeo manda; só uma frase em caps,
-     sem wordmark e sem "mais do que DJs" (essa foi pro letreiro e pro <title>) */
-  .hero h1 {
-    font-weight: 500; text-transform: uppercase;
-    font-size: clamp(1.05rem, 2.1vw, 1.9rem); letter-spacing: 0.24em; line-height: 1.75;
-    color: rgba(241, 234, 217, 0.94); text-shadow: 0 2px 30px rgba(0, 0, 0, 0.85);
-    animation: rise 1300ms var(--ease) 1700ms both;
+  .hero h1 { display: grid; justify-items: center; gap: clamp(16px, 2.2vw, 26px); text-transform: none; letter-spacing: 0; line-height: 1; }
+  .hero h1 .k { font-family: var(--cinzel); font-weight: 500; font-size: clamp(0.72rem, 1.15vw, 0.92rem); letter-spacing: 0.34em; text-transform: uppercase; color: rgba(241, 234, 217, 0.85); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85); animation: rise 1100ms var(--ease) 1700ms both; }
+  .hero h1 .k::before, .hero h1 .k::after { content: ""; display: inline-block; width: 34px; height: 1px; background: rgba(198, 161, 91, 0.7); vertical-align: middle; margin: 0 18px; }
+  .hero h1 .l { font-family: var(--didone); font-style: italic; font-weight: 400; font-size: clamp(3rem, 7.2vw, 6.4rem); line-height: 1.04; color: var(--off); text-shadow: 0 6px 50px rgba(0, 0, 0, 0.75); animation: rise 1400ms var(--ease) 1900ms both; }
+  .hero h1 .l em { color: var(--ouro-claro); }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 30px; margin-top: clamp(30px, 4vw, 46px); animation: rise 1100ms var(--ease) 2250ms both; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @media (max-width: 700px) {
+    .hero { padding-bottom: 96px; }
+    .hero-frame { inset: 84px 14px 14px; }
+    .hero-corner { font-size: 0.56rem; letter-spacing: 0.2em; }
+    .hero-corner-l { left: 28px; bottom: 30px; }
+    .hero-corner-r { right: 28px; top: 98px; }
+    .hero h1 .k { letter-spacing: 0.22em; line-height: 1.8; }
+    .hero h1 .k::before, .hero h1 .k::after { display: none; }
   }
-  .hero h1 span, .hero h1 b { display: block; }
-  .hero h1 b { font-weight: 500; color: var(--ouro-claro); }
-  @media (max-width: 600px) { .hero h1 { letter-spacing: 0.16em; line-height: 1.6; } }
-  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 30px; margin-top: clamp(24px, 3.5vw, 38px); animation: rise 1100ms var(--ease) 2250ms both; }
-  .hero-proof {
-    margin-top: clamp(28px, 4vw, 44px); padding-top: 22px; border-top: 1px solid rgba(198, 161, 91, 0.4);
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 40px;
-    font-family: var(--cinzel); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(241, 234, 217, 0.62); animation: rise 1100ms var(--ease) 2400ms both;
-  }
-  .hero-proof strong { color: var(--ouro-claro); font-weight: 600; }
   .bars { display: inline-flex; gap: 3px; align-items: flex-end; height: 12px; }
   .bars i { width: 2px; background: currentColor; height: 5px; transform-origin: bottom; }
   .bars.live i { animation: eq 640ms ease-in-out infinite alternate; }
@@ -535,13 +544,15 @@
       <video id="heroVideo" autoplay muted loop playsinline preload="auto"></video>
     </div>
     <div class="hero-inner">
-      <h1><span>O seu evento não precisa de mais um DJ.</span><b>Precisa de um show.</b></h1>
+      <h1><span class="k">O seu evento não precisa de mais um DJ.</span><span class="l">Precisa de um <em>show</em>.</span></h1>
       <div class="hero-actions">
         <a class="btn btn-solid" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener"><span>Consultar a minha data</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         <a class="btn" href="#videos"><span>Assistir aos shows</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v11M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div>
-      <p class="hero-proof"><span><strong>+800</strong> shows</span><span><strong>6</strong> países</span></p>
     </div>
+    <div class="hero-frame" aria-hidden="true"></div>
+    <p class="hero-corner hero-corner-l"><strong>+800</strong> shows &middot; <strong>6</strong> países</p>
+    <p class="hero-corner hero-corner-r">São Paulo &middot; Brasil &amp; exterior</p>
   </section>
 
   <!-- ======================= LETREIRO ======================= -->
