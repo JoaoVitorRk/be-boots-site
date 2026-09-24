@@ -291,9 +291,10 @@
   @media (max-width: 860px) {
     .look-grid { grid-template-columns: 1fr; }
     .look.a, .look.b, .look.c, .look-quote { grid-column: 1 / -1; margin-top: 0; }
-    .look.b { margin-top: 26px; } .look.c { display: none; }
+    .look.b, .look.c { margin-top: 26px; }
     .look-quote { margin-top: 34px; }
-    .look.a, .look.b { max-width: min(64vw, 280px); margin-inline: auto; }
+    .look.a { max-width: min(64vw, 280px); margin-inline: auto; }
+    .look.b, .look.c { max-width: min(82vw, 340px); margin-inline: auto; } /* paisagens: cada uma e um look diferente, todas aparecem */
     .look.a::after, .look.b::after { transform: translate(10px, 10px); }
   }
 
@@ -618,9 +619,9 @@
       <p class="reveal d2">Cada apresentação ganha uma identidade visual única, alinhada à atmosfera do evento. Muitas vezes, é a própria anfitriã quem escolhe o figurino da Be Boots para compor o cenário que ela construiu.</p>
     </div>
     <div class="wrap look-grid">
-      <figure class="look a reveal" data-parallax="-0.04"><img src="media/fotos/g-duo-sentado.jpg" alt="Vini e Zeca em ensaio editorial dourado, camisas de seda preta" width="1067" height="1600" loading="lazy"></figure>
-      <figure class="look b reveal d1" data-parallax="0.05"><img src="media/fotos/g-faceoff.jpg" alt="Retrato em dupla frente a frente, microfone e fones na mão, luz dourada" width="1067" height="1600" loading="lazy"></figure>
-      <figure class="look c reveal"><img src="media/fotos/g-costas.jpg" alt="A dupla de costas, fones e microfone atrás do corpo" width="1600" height="1200" loading="lazy"></figure>
+      <figure class="look a reveal" data-parallax="-0.04"><img src="media/fotos/g-look-duomo.jpg" alt="As botas da dupla em primeiro plano diante do Duomo de Milão" width="1122" height="1402" loading="lazy"></figure>
+      <figure class="look b reveal d1" data-parallax="0.05"><img src="media/fotos/g-look-mercedes.jpg" alt="Vini e Zeca de blazer vermelho e camisa western diante de uma Mercedes clássica" width="1600" height="1067" loading="lazy"></figure>
+      <figure class="look c reveal"><img src="media/fotos/g-look-praia.jpg" alt="A dupla em figurino autoral de quepes e óculos de tachas, beira-mar ao pôr do sol" width="1600" height="1067" loading="lazy"></figure>
       <div class="look-quote reveal d2">
         <p>“Não é sobre vaidade. É sobre propósito, no show e na vida.”</p>
         <small>Be Boots</small>
