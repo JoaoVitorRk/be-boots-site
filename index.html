@@ -19,6 +19,9 @@
 <meta name="theme-color" content="#070605">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="it_IT">
 <meta property="og:site_name" content="Be Boots">
 <meta property="og:title" content="Be Boots · Mais do que DJs. Artistas de Palco.">
 <meta property="og:description" content="Performance. Música. Conexão. +800 shows, +30.000 pessoas em um único evento, 6 países. O seu evento não precisa de mais um DJ. Precisa de um show.">
@@ -173,13 +176,28 @@
   nav a.nav-cta { font-weight: 600; letter-spacing: 0.2em; border: 1px solid rgba(198, 161, 91, 0.75); border-radius: 999px; padding: 11px 20px; background: none; transition: background-color 350ms var(--ease), color 350ms var(--ease); }
   nav a.nav-cta:hover { background: var(--ouro); color: var(--preto); }
   .menu-btn { display: none; background: none; border: 0; color: var(--off); font-family: var(--cinzel); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; cursor: pointer; padding: 8px 0; }
-  @media (max-width: 1080px) { nav { display: none; } .menu-btn { display: block; } }
+  nav { margin-left: auto; }
+  @media (max-width: 1240px) { nav { display: none; } .menu-btn { display: block; } header .lang { margin-left: auto; } }
+
+  /* seletor de idioma (PT · EN · ES · IT): mesmo componente do site do Bruno Daner, com italiano */
+  .lang { display: inline-flex; align-items: center; gap: 2px; flex: none; }
+  .lang button { background: none; border: 0; color: rgba(241, 234, 217, 0.55); font-family: var(--cinzel); font-weight: 600; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; padding: 6px 7px; border-radius: 999px; transition: color 250ms, background-color 250ms; }
+  .lang button:hover { color: var(--off); }
+  .lang button[aria-pressed="true"] { color: var(--preto); background: var(--ouro); }
+  .lang .sep { color: rgba(241, 234, 217, 0.25); font-size: 0.6rem; }
+  .menu-full .lang { margin: 16px 0 0; justify-content: center; }
+  .menu-full .lang button { font-size: 0.8rem; padding: 8px 13px; }
+  @media (max-width: 480px) {
+    header { gap: 10px; }
+    header .lang .sep { display: none; }
+    header .lang button { padding: 5px 6px; font-size: 0.58rem; letter-spacing: 0.1em; }
+  }
   .menu-full {
     position: fixed; inset: 0; z-index: 49; background: var(--preto);
-    display: grid; place-content: center; gap: 14px; text-align: center;
-    transform: translateY(-100%); transition: transform 600ms var(--ease);
+    display: grid; place-content: safe center; gap: 14px; text-align: center; overflow-y: auto; padding: 84px 20px 30px;
+    transform: translateY(-100%); visibility: hidden; transition: transform 600ms var(--ease), visibility 0s linear 600ms;
   }
-  .menu-full.open { transform: translateY(0); }
+  .menu-full.open { transform: translateY(0); visibility: visible; transition: transform 600ms var(--ease), visibility 0s; }
   .menu-full a { font-family: var(--didone); text-transform: uppercase; font-size: clamp(1.8rem, 7.5vw, 2.8rem); letter-spacing: 0.06em; text-decoration: none; line-height: 1.3; }
   .menu-full a:hover { color: var(--ouro-claro); }
   .menu-full .eyebrow { margin-bottom: 20px; }
@@ -215,6 +233,7 @@
   .hero-corner strong { color: var(--ouro-claro); font-weight: 600; }
   .hero-corner-l { left: 46px; bottom: 44px; }
   .hero-corner-r { right: 46px; top: 114px; text-align: right; }
+  @media (max-height: 520px) { .hero-corner-r { display: none; } }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--gutter); display: grid; justify-items: center; text-align: center; }
   .hero h1 { display: grid; justify-items: center; gap: clamp(16px, 2.2vw, 26px); text-transform: none; letter-spacing: 0; line-height: 1; }
   .hero h1 .k { font-family: var(--cinzel); font-weight: 500; font-size: clamp(0.72rem, 1.15vw, 0.92rem); letter-spacing: 0.34em; text-transform: uppercase; color: rgba(241, 234, 217, 0.85); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85); animation: rise 1100ms var(--ease) 1700ms both; }
@@ -418,6 +437,8 @@
   .depo-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
   .depo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, var(--preto) 0%, transparent 40%, transparent 60%, var(--preto) 100%); z-index: 1; }
   .depo .wrap { position: relative; z-index: 2; }
+  .depo-note { margin-top: clamp(34px, 5vw, 60px); font-family: var(--cinzel); font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(241, 234, 217, 0.42); }
+  .depo-note:empty { display: none; }
   .depo-list { display: grid; gap: clamp(50px, 7vw, 90px); margin-top: clamp(40px, 6vw, 70px); }
   .depo-item { position: relative; max-width: 800px; display: grid; gap: 18px; }
   .depo-item:nth-child(even) { margin-left: auto; }
@@ -523,116 +544,122 @@
 <div class="intro" aria-hidden="true"><div><img src="media/logo-script.png" alt=""><div class="intro-line"></div></div></div>
 
 <header id="topo">
-  <a class="brand" href="#inicio" aria-label="Be Boots: início"><img src="media/logo-script.png" alt="Be Boots, Música e Entretenimento" width="1224" height="590"></a>
-  <nav aria-label="Seções do site">
+  <a class="brand" href="#inicio" aria-label="Be Boots: início" data-i18n-attr="aria-label:a.home"><img src="media/logo-script.png" alt="Be Boots, Música e Entretenimento" data-i18n-attr="alt:a.logo" width="1224" height="590"></a>
+  <nav aria-label="Seções do site" data-i18n-attr="aria-label:a.nav">
     <ul>
-      <li><a href="#experiencia">A experiência</a></li>
+      <li><a href="#experiencia" data-i18n="nav.exp">A experiência</a></li>
       <li><a href="#figuras">Vini &amp; Zeca</a></li>
-      <li><a href="#eventos">Eventos</a></li>
-      <li><a href="#videos">Vídeos</a></li>
-      <li><a href="#internacional">Internacional</a></li>
-      <li><a class="nav-cta" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener">Consultar data</a></li>
+      <li><a href="#eventos" data-i18n="nav.ev">Eventos</a></li>
+      <li><a href="#videos" data-i18n="nav.vid">Vídeos</a></li>
+      <li><a href="#internacional" data-i18n="nav.int">Internacional</a></li>
+      <li><a class="nav-cta" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" data-wa="site" target="_blank" rel="noopener" data-i18n="nav.cta">Consultar data</a></li>
     </ul>
   </nav>
+  <div class="lang" id="langNav" role="group" aria-label="Idioma / Language / Idioma / Lingua">
+    <button type="button" data-lang="pt" aria-pressed="true">PT</button><span class="sep">·</span><button type="button" data-lang="en" aria-pressed="false">EN</button><span class="sep">·</span><button type="button" data-lang="es" aria-pressed="false">ES</button><span class="sep">·</span><button type="button" data-lang="it" aria-pressed="false">IT</button>
+  </div>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuFull">Menu</button>
 </header>
 <div class="menu-full" id="menuFull">
-  <p class="eyebrow">Be Boots · Música e Entretenimento</p>
-  <a href="#experiencia">A experiência</a>
+  <p class="eyebrow" data-i18n="menu.eyebrow">Be Boots · Música e Entretenimento</p>
+  <a href="#experiencia" data-i18n="nav.exp">A experiência</a>
   <a href="#figuras">Vini &amp; Zeca</a>
-  <a href="#eventos">Eventos</a>
-  <a href="#videos">Vídeos</a>
-  <a href="#internacional">Internacional</a>
-  <a href="#contato">Consultar data</a>
+  <a href="#eventos" data-i18n="nav.ev">Eventos</a>
+  <a href="#videos" data-i18n="nav.vid">Vídeos</a>
+  <a href="#internacional" data-i18n="nav.int">Internacional</a>
+  <a href="#contato" data-i18n="nav.cta">Consultar data</a>
+  <div class="lang" role="group" aria-label="Idioma / Language / Idioma / Lingua">
+    <button type="button" data-lang="pt" aria-pressed="true">PT</button><span class="sep">·</span><button type="button" data-lang="en" aria-pressed="false">EN</button><span class="sep">·</span><button type="button" data-lang="es" aria-pressed="false">ES</button><span class="sep">·</span><button type="button" data-lang="it" aria-pressed="false">IT</button>
+  </div>
 </div>
 
 <main id="inicio">
   <!-- ======================= HERO — a fama primeiro ======================= -->
-  <section class="hero" aria-label="Apresentação">
+  <section class="hero" aria-label="Apresentação" data-i18n-attr="aria-label:a.hero">
     <div class="hero-bg" aria-hidden="true">
       <video id="heroVideo" autoplay muted loop playsinline preload="auto"></video>
     </div>
     <div class="hero-inner">
-      <h1><span class="k">O seu evento não precisa de mais um DJ.</span><span class="l">Precisa de um <em>show</em>.</span></h1>
+      <h1 data-i18n="hero.h1"><span class="k">O seu evento não precisa de mais um DJ.</span><span class="l">Precisa de um <em>show</em>.</span></h1>
       <div class="hero-actions">
-        <a class="btn btn-solid" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener"><span>Consultar a minha data</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="btn" href="#videos"><span>Assistir aos shows</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v11M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn btn-solid" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" data-wa="site" target="_blank" rel="noopener"><span data-i18n="cta.data">Consultar a minha data</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn" href="#videos"><span data-i18n="hero.watch">Assistir aos shows</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v11M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div>
     </div>
     <div class="hero-frame" aria-hidden="true"></div>
-    <p class="hero-corner hero-corner-l"><strong>+800</strong> shows &middot; <strong>6</strong> países</p>
-    <p class="hero-corner hero-corner-r">São Paulo &middot; Brasil &amp; exterior</p>
+    <p class="hero-corner hero-corner-l" data-i18n="hero.cl"><strong>+800</strong> shows &middot; <strong>6</strong> países</p>
+    <p class="hero-corner hero-corner-r" data-i18n="loc">São Paulo &middot; Brasil &amp; exterior</p>
   </section>
 
   <!-- ======================= LETREIRO ======================= -->
   <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
+    <div class="marquee-track" data-i18n-list="marquee">
       <span>Mais do que DJs</span><span>Artistas de palco</span><span>Performance</span><span>Música</span><span>Conexão</span><span>Casamentos</span><span>15 anos</span><span>Aniversários marcantes</span><span>Corporativo</span><span>Festivais</span><span>São Paulo</span><span>Itália</span><span>Ibiza</span><span>Portugal</span>
       <span>Mais do que DJs</span><span>Artistas de palco</span><span>Performance</span><span>Música</span><span>Conexão</span><span>Casamentos</span><span>15 anos</span><span>Aniversários marcantes</span><span>Corporativo</span><span>Festivais</span><span>São Paulo</span><span>Itália</span><span>Ibiza</span><span>Portugal</span>
     </div>
   </div>
 
   <!-- ======================= AUTORIDADE ======================= -->
-  <section class="autoridade" aria-label="Be Boots em números">
+  <section class="autoridade" aria-label="Be Boots em números" data-i18n-attr="aria-label:aut.eyebrow">
     <div class="wrap aut-head">
-      <p class="eyebrow reveal">Be Boots em números</p>
-      <h2 class="reveal d1">A autoridade vem <em>do palco</em>.</h2>
+      <p class="eyebrow reveal" data-i18n="aut.eyebrow">Be Boots em números</p>
+      <h2 class="reveal d1" data-i18n="aut.h2">A autoridade vem <em>do palco</em>.</h2>
     </div>
     <div class="wrap aut-grid">
-      <div class="aut reveal"><b class="foil">+30.000</b><small>pessoas em um único evento</small></div>
-      <div class="aut reveal d1"><b class="foil">+800</b><small>shows realizados</small></div>
-      <div class="aut reveal d2"><b class="foil">+170</b><small>shows internacionais</small></div>
-      <div class="aut reveal d3"><b class="foil">5.0</b><small><span class="stars">★★★★★</span> avaliação Google</small></div>
+      <div class="aut reveal"><b class="foil" data-i18n="aut.n1v">+30.000</b><small data-i18n="aut.n1">pessoas em um único evento</small></div>
+      <div class="aut reveal d1"><b class="foil" data-i18n="aut.n2v">+800</b><small data-i18n="aut.n2">shows realizados</small></div>
+      <div class="aut reveal d2"><b class="foil" data-i18n="aut.n3v">+170</b><small data-i18n="aut.n3">shows internacionais</small></div>
+      <div class="aut reveal d3"><b class="foil">5.0</b><small data-i18n="aut.n4"><span class="stars">★★★★★</span> avaliação Google</small></div>
     </div>
     <div class="wrap parceiros reveal">
-      <p class="eyebrow">Palcos e parceiros</p>
+      <p class="eyebrow" data-i18n="par.eyebrow">Palcos e parceiros</p>
       <ul>
-        <li>Banco do Brasil</li><li>Vivo</li><li>Sebrae</li><li>Senac</li><li>Abrasel</li><li>Simpress</li><li>Club Med</li><li>Grand Cru</li><li>ITForum</li><li>D-Edge</li><li>Amnésia</li><li>Rainbow Fest</li><li>Prefeitura de Porto Seguro</li><li>Prefeitura de Piraju</li><li>Fidenza Village · Itália</li><li>Il Colle</li><li>Mama Shelter · Portugal</li>
+        <li>Banco do Brasil</li><li>Vivo</li><li>Sebrae</li><li>Senac</li><li>Abrasel</li><li>Simpress</li><li>Club Med</li><li>Grand Cru</li><li>ITForum</li><li>D-Edge</li><li>Amnésia</li><li>Rainbow Fest</li><li data-i18n="par.ps">Prefeitura de Porto Seguro</li><li data-i18n="par.pj">Prefeitura de Piraju</li><li data-i18n="par.fv">Fidenza Village · Itália</li><li>Il Colle</li><li data-i18n="par.ms">Mama Shelter · Portugal</li>
       </ul>
     </div>
   </section>
 
   <!-- ======================= MANIFESTO ======================= -->
-  <section id="experiencia" class="manifesto" aria-label="A experiência Be Boots">
+  <section id="experiencia" class="manifesto" aria-label="A experiência Be Boots" data-i18n-attr="aria-label:a.man">
     <span class="ghost" aria-hidden="true">Show</span>
     <div class="wrap manifesto-head">
-      <p class="eyebrow reveal">A experiência</p>
-      <h2 class="reveal d1">Não é sobre colocar<br>uma música para tocar.<br>É sobre dominar o <em>palco</em>.</h2>
-      <p class="lead reveal d2">Música, voz, interação e presença. Tudo ao vivo, tudo Be Boots.</p>
+      <p class="eyebrow reveal" data-i18n="man.eyebrow">A experiência</p>
+      <h2 class="reveal d1" data-i18n="man.h2">Não é sobre colocar<br>uma música para tocar.<br>É sobre dominar o <em>palco</em>.</h2>
+      <p class="lead reveal d2" data-i18n="man.lead">Música, voz, interação e presença. Tudo ao vivo, tudo Be Boots.</p>
     </div>
     <div class="wrap pilares">
       <div class="pilar reveal">
-        <b><span>I</span> Duas forças no palco</b>
-        <p>Um DJ que conduz a pista com precisão e personalidade; e, uma voz que transforma a festa em um verdadeiro acontecimento. O set não toca sozinho: ele acontece com a gente no meio da sua pista.</p>
+        <b data-i18n="man.p1t"><span>I</span> Duas forças no palco</b>
+        <p data-i18n="man.p1">Um DJ que conduz a pista com precisão e personalidade; e, uma voz que transforma a festa em um verdadeiro acontecimento. O set não toca sozinho: ele acontece com a gente no meio da sua pista.</p>
       </div>
       <div class="pilar reveal d1">
-        <b><span>II</span> Direção musical refinada</b>
-        <p>Da música disco ao funk, do pop rock ao samba: caminhamos por todos os estilos para a sua festa ser única. A curadoria nasce do seu evento, não de um roteiro pronto.</p>
+        <b data-i18n="man.p2t"><span>II</span> Direção musical refinada</b>
+        <p data-i18n="man.p2">Da música disco ao funk, do pop rock ao samba: caminhamos por todos os estilos para a sua festa ser única. A curadoria nasce do seu evento, não de um roteiro pronto.</p>
       </div>
       <div class="pilar reveal d2">
-        <b><span>III</span> Condução de público</b>
-        <p>Já foram mais de 30.000 pessoas cantando juntas num único evento. Mas seja um festival ou um jantar de 50 convidados, a régua é a mesma: na nossa pista, quem brilha é você.</p>
+        <b data-i18n="man.p3t"><span>III</span> Condução de público</b>
+        <p data-i18n="man.p3">Já foram mais de 30.000 pessoas cantando juntas num único evento. Mas seja um festival ou um jantar de 50 convidados, a régua é a mesma: na nossa pista, quem brilha é você.</p>
       </div>
     </div>
-    <div class="wrap"><p class="manifesto-fecho reveal">Tudo feito para quem vive experiências e não apenas momentos.</p></div>
+    <div class="wrap"><p class="manifesto-fecho reveal" data-i18n="man.fecho">Tudo feito para quem vive experiências e não apenas momentos.</p></div>
   </section>
 
   <div class="carvao-to-light" aria-hidden="true"></div>
 
   <!-- ======================= LOOKBOOK ======================= -->
-  <section class="lookbook light" aria-label="Editorial Be Boots">
+  <section class="lookbook light" aria-label="Editorial Be Boots" data-i18n-attr="aria-label:a.look">
     <div class="wrap look-head">
-      <p class="eyebrow reveal">Editorial</p>
-      <h2 class="reveal d1">Moda não é roupa.<br>É <em>assinatura</em>.</h2>
-      <p class="reveal d2">Cada apresentação ganha uma identidade visual única, alinhada à atmosfera do evento. Muitas vezes, é a própria anfitriã quem escolhe o figurino da Be Boots para compor o cenário que ela construiu.</p>
+      <p class="eyebrow reveal" data-i18n="look.eyebrow">Editorial</p>
+      <h2 class="reveal d1" data-i18n="look.h2">Moda não é roupa.<br>É <em>assinatura</em>.</h2>
+      <p class="reveal d2" data-i18n="look.p">Cada apresentação ganha uma identidade visual única, alinhada à atmosfera do evento. Muitas vezes, é a própria anfitriã quem escolhe o figurino da Be Boots para compor o cenário que ela construiu.</p>
     </div>
     <div class="wrap look-grid">
-      <figure class="look a reveal" data-parallax="-0.04"><img src="media/fotos/g-look-duomo.jpg" alt="As botas da dupla em primeiro plano diante do Duomo de Milão" width="1122" height="1402" loading="lazy"></figure>
-      <figure class="look b reveal d1" data-parallax="0.05"><img src="media/fotos/g-look-mercedes.jpg" alt="Vini e Zeca de blazer vermelho e camisa western diante de uma Mercedes clássica" width="1600" height="1067" loading="lazy"></figure>
-      <figure class="look c reveal"><img src="media/fotos/g-look-praia.jpg" alt="A dupla em figurino autoral de quepes e óculos de tachas, beira-mar ao pôr do sol" width="1600" height="1067" loading="lazy"></figure>
-      <figure class="look d reveal d1" data-parallax="0.04"><img src="media/fotos/g-look-costas.jpg" alt="A dupla de costas, de camisa preta, com os fones e o microfone nas mãos, sob luz dourada" width="1387" height="1134" loading="lazy"></figure>
+      <figure class="look a reveal" data-parallax="-0.04"><img src="media/fotos/g-look-duomo.jpg" data-i18n-attr="alt:alt.duomo" alt="As botas da dupla em primeiro plano diante do Duomo de Milão" width="1122" height="1402" loading="lazy"></figure>
+      <figure class="look b reveal d1" data-parallax="0.05"><img src="media/fotos/g-look-mercedes.jpg" data-i18n-attr="alt:alt.mercedes" alt="Vini e Zeca de blazer vermelho e camisa western diante de uma Mercedes clássica" width="1600" height="1067" loading="lazy"></figure>
+      <figure class="look c reveal"><img src="media/fotos/g-look-praia.jpg" data-i18n-attr="alt:alt.praia" alt="A dupla em figurino autoral de quepes e óculos de tachas, beira-mar ao pôr do sol" width="1600" height="1067" loading="lazy"></figure>
+      <figure class="look d reveal d1" data-parallax="0.04"><img src="media/fotos/g-look-costas.jpg" data-i18n-attr="alt:alt.costas" alt="A dupla de costas, de camisa preta, com os fones e o microfone nas mãos, sob luz dourada" width="1387" height="1134" loading="lazy"></figure>
       <div class="look-quote reveal d2">
-        <p>“Não é sobre vaidade. É sobre propósito, no show e na vida.”</p>
+        <p data-i18n="look.q">“Não é sobre vaidade. É sobre propósito, no show e na vida.”</p>
         <small>Be Boots</small>
       </div>
     </div>
@@ -641,150 +668,150 @@
   <div class="to-carvao" aria-hidden="true"></div>
 
   <!-- ======================= VINI & ZECA ======================= -->
-  <section id="figuras" class="figuras" aria-label="Vini e Zeca">
+  <section id="figuras" class="figuras" aria-label="Vini e Zeca" data-i18n-attr="aria-label:a.fig">
     <div class="wrap fig-head">
-      <p class="eyebrow reveal">As figuras</p>
+      <p class="eyebrow reveal" data-i18n="fig.eyebrow">As figuras</p>
       <h2 class="reveal d1">Vini &amp; <em>Zeca</em>.</h2>
-      <p class="lead reveal d2">Quem contrata a Be Boots não leva só um show: leva os dois artistas que os convidados vão querer conhecer no fim da noite.</p>
+      <p class="lead reveal d2" data-i18n="fig.lead">Quem contrata a Be Boots não leva só um show: leva os dois artistas que os convidados vão querer conhecer no fim da noite.</p>
     </div>
     <div class="wrap fig-grid">
-      <figure class="fig reveal"><img src="media/fotos/g-solo-1.jpg" alt="Retrato editorial de um dos artistas da Be Boots, cabelo ao vento" width="1067" height="1600" loading="lazy"></figure>
-      <figure class="fig reveal d1"><img src="media/fotos/g-solo-2.jpg" alt="Retrato editorial de um dos artistas da Be Boots, sorrindo, cabelo em movimento" width="1067" height="1600" loading="lazy"></figure>
+      <figure class="fig reveal"><img src="media/fotos/g-solo-1.jpg" data-i18n-attr="alt:alt.solo1" alt="Retrato editorial de um dos artistas da Be Boots, cabelo ao vento" width="1067" height="1600" loading="lazy"></figure>
+      <figure class="fig reveal d1"><img src="media/fotos/g-solo-2.jpg" data-i18n-attr="alt:alt.solo2" alt="Retrato editorial de um dos artistas da Be Boots, sorrindo, cabelo em movimento" width="1067" height="1600" loading="lazy"></figure>
     </div>
     <div class="wrap fig-copy reveal d2">
-      <p>Cinco anos de estrada construídos com <b>constância, autenticidade e verdade</b>. Uma dupla que canta, mixa, se veste para o seu tema e conduz a festa de dentro da pista; e, não atrás de uma mesa.</p>
-      <p>É por isso que quem contrata Be Boots termina o evento com dois amigos novos! <b>Não é apenas a dupla de DJs. É o Vini e o Zeca.</b></p>
+      <p data-i18n="fig.p1">Cinco anos de estrada construídos com <b>constância, autenticidade e verdade</b>. Uma dupla que canta, mixa, se veste para o seu tema e conduz a festa de dentro da pista; e, não atrás de uma mesa.</p>
+      <p data-i18n="fig.p2">É por isso que quem contrata Be Boots termina o evento com dois amigos novos! <b>Não é apenas a dupla de DJs. É o Vini e o Zeca.</b></p>
     </div>
     <div class="wrap fig-video reveal d3">
-      <article class="card fig-card" data-video="media/videos/v-pitch.mp4" data-title="Muito prazer: a dupla se apresenta">
+      <article class="card fig-card" data-video="media/videos/v-pitch.mp4" data-title="Muito prazer: a dupla se apresenta" data-i18n-attr="data-title:a.title0">
         <img src="media/videos/poster-pitch.jpg" alt="" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Muito prazer"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Muito prazer</h3><p>A dupla se apresenta · na voz deles</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: Muito prazer" data-i18n-attr="aria-label:a.play0"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="fig.card"><h3>Muito prazer</h3><p>A dupla se apresenta · na voz deles</p></div>
       </article>
     </div>
   </section>
 
   <!-- ======================= EVENTOS ======================= -->
-  <section id="eventos" class="eventos" aria-label="Tipos de evento">
+  <section id="eventos" class="eventos" aria-label="Tipos de evento" data-i18n-attr="aria-label:a.ev">
     <div class="wrap eventos-head">
-      <p class="eyebrow reveal">Sets exclusivos para experiências premium</p>
-      <h2 class="reveal d1">Eventos <em>alto padrão</em>.</h2>
-      <p class="reveal d2">Do "sim" de um casal ao brinde dos 50 anos, do lançamento de marca ao palco de festival: o show se desenha sob medida para o seu evento.</p>
+      <p class="eyebrow reveal" data-i18n="ev.eyebrow">Sets exclusivos para experiências premium</p>
+      <h2 class="reveal d1" data-i18n="ev.h2">Eventos <em>alto padrão</em>.</h2>
+      <p class="reveal d2" data-i18n="ev.p">Do "sim" de um casal ao brinde dos 50 anos, do lançamento de marca ao palco de festival: o show se desenha sob medida para o seu evento.</p>
     </div>
     <div class="wrap ato-list">
       <article class="ato reveal">
-        <span class="n" aria-hidden="true">Ato I</span>
-        <h3>Casamentos</h3>
-        <p><span class="q">"Ser a escolha de tantos casais tem sido um dos pontos mais emocionantes da nossa carreira."</span> Curadoria musical com os noivos, leitura fina da pista e a energia certa em cada fase da festa, até o último convidado.</p>
+        <span class="n" aria-hidden="true" data-i18n="ato1.n">Ato I</span>
+        <h3 data-i18n="ato1.h">Casamentos</h3>
+        <p data-i18n="ato1.p"><span class="q">"Ser a escolha de tantos casais tem sido um dos pontos mais emocionantes da nossa carreira."</span> Curadoria musical com os noivos, leitura fina da pista e a energia certa em cada fase da festa, até o último convidado.</p>
       </article>
       <article class="ato reveal">
-        <span class="n" aria-hidden="true">Ato II</span>
-        <h3>15 anos &amp; aniversários</h3>
-        <p>Os 40, 50, 60, 70 são os novos 15. <span class="q">"Na nossa pista, ela é a dona absoluta da noite":</span> debutantes e aniversariantes vivem a festa como protagonistas, não como espectadoras.</p>
+        <span class="n" aria-hidden="true" data-i18n="ato2.n">Ato II</span>
+        <h3 data-i18n="ato2.h">15 anos &amp; aniversários</h3>
+        <p data-i18n="ato2.p">Os 40, 50, 60, 70 são os novos 15. <span class="q">"Na nossa pista, ela é a dona absoluta da noite":</span> debutantes e aniversariantes vivem a festa como protagonistas, não como espectadoras.</p>
       </article>
       <article class="ato reveal">
-        <span class="n" aria-hidden="true">Ato III</span>
-        <h3>Corporativo &amp; marcas</h3>
-        <p>Moda, música e Be Boots num só lugar: convenções, premiações e eventos de marca, como o Banco do Brasil, o Fidenza Village, na Itália, e o Mama Shelter, em Portugal, com repertório e figurino sob o tema da ocasião.</p>
+        <span class="n" aria-hidden="true" data-i18n="ato3.n">Ato III</span>
+        <h3 data-i18n="ato3.h">Corporativo &amp; marcas</h3>
+        <p data-i18n="ato3.p">Moda, música e Be Boots num só lugar: convenções, premiações e eventos de marca, como o Banco do Brasil, o Fidenza Village, na Itália, e o Mama Shelter, em Portugal, com repertório e figurino sob o tema da ocasião.</p>
       </article>
       <article class="ato reveal">
-        <span class="n" aria-hidden="true">Ato IV</span>
-        <h3>Festivais &amp; grandes palcos</h3>
-        <p>Da abertura do Carnaval de Porto Seguro ao Rainbow Fest e aos festivais da Itália: já foram mais de 30.000 pessoas reunidas em um único evento. Quando o palco cresce, o show cresce junto.</p>
+        <span class="n" aria-hidden="true" data-i18n="ato4.n">Ato IV</span>
+        <h3 data-i18n="ato4.h">Festivais &amp; grandes palcos</h3>
+        <p data-i18n="ato4.p">Da abertura do Carnaval de Porto Seguro ao Rainbow Fest e aos festivais da Itália: já foram mais de 30.000 pessoas reunidas em um único evento. Quando o palco cresce, o show cresce junto.</p>
       </article>
     </div>
   </section>
 
   <!-- ======================= VÍDEOS ======================= -->
-  <section id="videos" class="filmes" aria-label="Vídeos de shows reais">
+  <section id="videos" class="filmes" aria-label="Vídeos de shows reais" data-i18n-attr="aria-label:a.vid">
     <div class="wrap filmes-head">
       <div>
-        <p class="eyebrow reveal">Assista com som</p>
-        <h2 class="reveal d1">O show, ao <em>vivo</em>.</h2>
+        <p class="eyebrow reveal" data-i18n="vid.eyebrow">Assista com som</p>
+        <h2 class="reveal d1" data-i18n="vid.h2">O show, ao <em>vivo</em>.</h2>
       </div>
       <div class="reveal d2">
-        <p>Nada aqui é ensaio nem banco de imagem: é o que os seus convidados vão viver. Toque num vídeo e ouça com som.</p>
+        <p data-i18n="vid.p">Nada aqui é ensaio nem banco de imagem: é o que os seus convidados vão viver. Toque num vídeo e ouça com som.</p>
         <div class="strip-nav" style="margin-top: 22px">
-          <button class="strip-btn" type="button" data-dir="-1" aria-label="Vídeo anterior"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M8 4L3 9l5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="strip-btn" type="button" data-dir="1" aria-label="Próximo vídeo"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="strip-btn" type="button" data-dir="-1" aria-label="Vídeo anterior" data-i18n-attr="aria-label:a.prev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M8 4L3 9l5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="strip-btn" type="button" data-dir="1" aria-label="Próximo vídeo" data-i18n-attr="aria-label:a.next"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
     </div>
     <div class="strip" id="strip">
-      <article class="card reveal" data-video="media/videos/v-casamento.mp4" data-title="Casamento: a noiva no centro da festa">
+      <article class="card reveal" data-video="media/videos/v-casamento.mp4" data-title="Casamento: a noiva no centro da festa" data-i18n-attr="data-title:a.title1">
         <img src="media/videos/poster-casamento.jpg" alt="" width="1280" height="720" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Casamento"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Casamento</h3><p>A noiva no centro da festa · ouro</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: Casamento" data-i18n-attr="aria-label:a.play1"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="card1"><h3>Casamento</h3><p>A noiva no centro da festa · ouro</p></div>
       </article>
-      <article class="card reveal d1" data-video="media/videos/v-oficial.mp4" data-title="O filme oficial: uma noite com a Be Boots">
+      <article class="card reveal d1" data-video="media/videos/v-oficial.mp4" data-title="O filme oficial: uma noite com a Be Boots" data-i18n-attr="data-title:a.title2">
         <img src="media/videos/poster-oficial.jpg" alt="" width="720" height="1280" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: O filme oficial"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>O filme oficial</h3><p>Uma noite de gala · do tapete ao palco</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: O filme oficial" data-i18n-attr="aria-label:a.play2"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="card2"><h3>O filme oficial</h3><p>Uma noite de gala · do tapete ao palco</p></div>
       </article>
-      <article class="card reveal d2" data-video="media/videos/v-rainbow.mp4" data-title="Rainbow Fest: o 700º show">
+      <article class="card reveal d2" data-video="media/videos/v-rainbow.mp4" data-title="Rainbow Fest: o 700º show" data-i18n-attr="data-title:a.title3">
         <img src="media/videos/poster-rainbow.jpg" alt="" width="720" height="1280" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Rainbow Fest"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Rainbow Fest</h3><p>O 700º show · Juiz de Fora</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: Rainbow Fest" data-i18n-attr="aria-label:a.play3"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="card3"><h3>Rainbow Fest</h3><p>O 700º show · Juiz de Fora</p></div>
       </article>
-      <article class="card reveal d3" data-video="media/videos/v-carnaval.mp4" data-title="Carnaval de Porto Seguro: abertura oficial">
+      <article class="card reveal d3" data-video="media/videos/v-carnaval.mp4" data-title="Carnaval de Porto Seguro: abertura oficial" data-i18n-attr="data-title:a.title4">
         <img src="media/videos/poster-carnaval.jpg" alt="" width="1280" height="720" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Carnaval de Porto Seguro"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Porto Seguro</h3><p>Abertura do Carnaval</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: Carnaval de Porto Seguro" data-i18n-attr="aria-label:a.play4"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="card4"><h3>Porto Seguro</h3><p>Abertura do Carnaval</p></div>
       </article>
-      <article class="card reveal d3" data-video="media/videos/v-corporativo.mp4" data-title="Corporativo: evento de marca">
+      <article class="card reveal d3" data-video="media/videos/v-corporativo.mp4" data-title="Corporativo: evento de marca" data-i18n-attr="data-title:a.title5">
         <img src="media/videos/poster-corporativo.jpg" alt="" width="720" height="1280" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: Corporativo"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>Corporativo</h3><p>Evento de marca · convenções e prêmios</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: Corporativo" data-i18n-attr="aria-label:a.play5"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="card5"><h3>Corporativo</h3><p>Evento de marca · convenções e prêmios</p></div>
       </article>
-      <article class="card reveal d3" data-video="media/videos/v-15anos.mp4" data-title="15 anos: o depoimento da debutante">
+      <article class="card reveal d3" data-video="media/videos/v-15anos.mp4" data-title="15 anos: o depoimento da debutante" data-i18n-attr="data-title:a.title6">
         <img src="media/videos/poster-15anos.jpg" alt="" width="720" height="1280" loading="lazy">
-        <button class="card-play" type="button" aria-label="Assistir: 15 anos"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
-        <button class="card-stop" type="button">Fechar</button>
-        <div class="card-info"><h3>15 anos</h3><p>Na voz da debutante · depoimento real</p></div>
+        <button class="card-play" type="button" aria-label="Assistir: 15 anos" data-i18n-attr="aria-label:a.play6"><svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true"><path d="M0 0L18 11L0 22V0Z" fill="#EBD9A9"/></svg></button>
+        <button class="card-stop" type="button" data-i18n="ui.close">Fechar</button>
+        <div class="card-info" data-i18n="card6"><h3>15 anos</h3><p>Na voz da debutante · depoimento real</p></div>
       </article>
     </div>
     <div class="strip-foot">
       <div class="strip-progress" aria-hidden="true"><i id="stripBar"></i></div>
       <div class="strip-nav">
-        <button class="strip-btn" type="button" data-dir="-1" aria-label="Vídeo anterior"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M8 4L3 9l5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="strip-btn" type="button" data-dir="1" aria-label="Próximo vídeo"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="strip-btn" type="button" data-dir="-1" aria-label="Vídeo anterior" data-i18n-attr="aria-label:a.prev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M8 4L3 9l5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="strip-btn" type="button" data-dir="1" aria-label="Próximo vídeo" data-i18n-attr="aria-label:a.next"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
-      <p class="strip-hint" style="padding: 0">Arraste ou use as setas</p>
+      <p class="strip-hint" style="padding: 0" data-i18n="vid.hint">Arraste ou use as setas</p>
     </div>
     <div class="wrap" style="margin-top: clamp(50px, 7vw, 90px); text-align: center;">
-      <a class="btn reveal" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20os%20v%C3%ADdeos%20e%20quero%20consultar%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener"><span>Consultar a minha data</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="btn reveal" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20os%20v%C3%ADdeos%20e%20quero%20consultar%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" data-wa="videos" target="_blank" rel="noopener"><span data-i18n="cta.data">Consultar a minha data</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
 
   <!-- ======================= O NOME (botas no palco) ======================= -->
-  <div class="botas" role="img" aria-label="A cortina do teatro se abre: o lustre, a marca Be Boots e dois pares de botas sob o foco de luz">
+  <div class="botas" role="img" data-i18n-attr="aria-label:a.botas" aria-label="A cortina do teatro se abre: o lustre, a marca Be Boots e dois pares de botas sob o foco de luz">
     <video muted playsinline preload="metadata" width="1080" height="1920" poster="media/videos/poster-boots.jpg" aria-hidden="true"><source src="media/videos/boots.mp4" type="video/mp4"></video>
   </div>
 
   <div class="to-light" aria-hidden="true"></div>
 
   <!-- ======================= INTERNACIONAL ======================= -->
-  <section id="internacional" class="inter light" aria-label="Atuação internacional">
+  <section id="internacional" class="inter light" aria-label="Atuação internacional" data-i18n-attr="aria-label:a.int">
     <div class="wrap inter-grid">
       <div class="inter-copy">
-        <p class="eyebrow reveal">Do Brasil para o mundo</p>
-        <h2 class="reveal d1">Seis países.<br>Uma <em>pista</em>.</h2>
-        <p class="lead reveal d2">De São Paulo aos festivais da Itália, de Ibiza a Portugal: mais de 170 shows internacionais, e contando.</p>
-        <p class="reveal d2">A temporada europeia já passou por palcos e casas como Fidenza Village, Il Colle e casamentos na Itália, com o mesmo cuidado de sempre: estilo, energia e experiências inesquecíveis em qualquer idioma.</p>
+        <p class="eyebrow reveal" data-i18n="int.eyebrow">Do Brasil para o mundo</p>
+        <h2 class="reveal d1" data-i18n="int.h2">Seis países.<br>Uma <em>pista</em>.</h2>
+        <p class="lead reveal d2" data-i18n="int.lead">De São Paulo aos festivais da Itália, de Ibiza a Portugal: mais de 170 shows internacionais, e contando.</p>
+        <p class="reveal d2" data-i18n="int.p">A temporada europeia já passou por palcos e casas como Fidenza Village, Il Colle e casamentos na Itália, com o mesmo cuidado de sempre: estilo, energia e experiências inesquecíveis em qualquer idioma.</p>
         <ul class="inter-tags reveal d3">
-          <li><img src="media/flags/br.png" alt="" width="20" height="15">Brasil</li><li><img src="media/flags/it.png" alt="" width="20" height="15">Itália</li><li><img src="media/flags/es.png" alt="" width="20" height="15">Espanha · Ibiza</li><li><img src="media/flags/pt.png" alt="" width="20" height="15">Portugal</li><li><img src="media/flags/fr.png" alt="" width="20" height="15">França</li><li><img src="media/flags/ar.png" alt="" width="20" height="15">Argentina</li>
+          <li><img src="media/flags/br.png" alt="" width="20" height="15"><span data-i18n="pais.br">Brasil</span></li><li><img src="media/flags/it.png" alt="" width="20" height="15"><span data-i18n="pais.it">Itália</span></li><li><img src="media/flags/es.png" alt="" width="20" height="15"><span data-i18n="pais.es">Espanha · Ibiza</span></li><li><img src="media/flags/pt.png" alt="" width="20" height="15"><span data-i18n="pais.pt">Portugal</span></li><li><img src="media/flags/fr.png" alt="" width="20" height="15"><span data-i18n="pais.fr">França</span></li><li><img src="media/flags/ar.png" alt="" width="20" height="15"><span data-i18n="pais.ar">Argentina</span></li>
         </ul>
       </div>
       <figure class="collage reveal">
-        <div class="main" data-parallax="-0.05"><img src="media/fotos/g-urbano.jpg" alt="A dupla Be Boots em retrato urbano em tom sépia, rindo" width="1600" height="1067" loading="lazy"></div>
-        <div class="second" data-parallax="0.07"><img src="media/fotos/g-decks-2.jpg" alt="A dupla atrás das pick-ups em luz dourada" width="1600" height="1067" loading="lazy"></div>
-        <figcaption>Temporada internacional · Europa</figcaption>
+        <div class="main" data-parallax="-0.05"><img src="media/fotos/g-urbano.jpg" data-i18n-attr="alt:alt.urbano" alt="A dupla Be Boots em retrato urbano em tom sépia, rindo" width="1600" height="1067" loading="lazy"></div>
+        <div class="second" data-parallax="0.07"><img src="media/fotos/g-decks-2.jpg" data-i18n-attr="alt:alt.decks" alt="A dupla atrás das pick-ups em luz dourada" width="1600" height="1067" loading="lazy"></div>
+        <figcaption data-i18n="int.cap">Temporada internacional · Europa</figcaption>
       </figure>
     </div>
   </section>
@@ -792,49 +819,50 @@
   <div class="to-dark" aria-hidden="true"></div>
 
   <!-- ======================= FEEDBACKS ======================= -->
-  <section id="feedbacks" class="depo" aria-label="Feedbacks">
+  <section id="feedbacks" class="depo" aria-label="Feedbacks" data-i18n-attr="aria-label:depo.eyebrow">
     <div class="wrap">
-      <p class="eyebrow reveal">Feedbacks</p>
-      <h2 class="reveal d1">A palavra de quem <em>viveu</em>.</h2>
+      <p class="eyebrow reveal" data-i18n="depo.eyebrow">Feedbacks</p>
+      <h2 class="reveal d1" data-i18n="depo.h2">A palavra de quem <em>viveu</em>.</h2>
       <div class="depo-list">
         <!-- Avaliações reais do Google (prints em ../depoimentos foto/, 22/09) + depoimento em vídeo do destaque do IG. -->
-        <figure class="depo-item reveal"><blockquote>No nosso casamento, souberam sentir o clima da festa, escolher as músicas certas e não deixou ninguém parado na pista. Foi simplesmente perfeito e tornou nossa noite ainda mais especial. Com certeza recomendamos de olhos fechados!</blockquote><figcaption>Herica Matos <span>· casamento · avaliação 5 estrelas no Google</span></figcaption></figure>
-        <figure class="depo-item reveal"><blockquote>Simplesmente incrível. Não é só música, é experiência. Quando eles tocam, parece que tudo ao redor muda, a energia, o clima, as pessoas... é difícil até descrever. Você sente.</blockquote><figcaption>Raphael Vilela Dias <span>· avaliação 5 estrelas no Google</span></figcaption></figure>
-        <figure class="depo-item reveal"><blockquote>Nosso muito obrigada à Beboots por tornar nossas Bodas ainda mais especiais! Foi um sucesso, e a alegria dos nossos convidados teve um toque especial graças a vocês. Gratidão pela parceria e pelo excelente trabalho!</blockquote><figcaption>Cíntia Costa Soares <span>· bodas · avaliação 5 estrelas no Google</span></figcaption></figure>
-        <figure class="depo-item reveal"><blockquote lang="it">I Be Boots sono sempre una garanzia! Musica bellissima, loro magnetici e un intrattenimento davvero coinvolgente. Portano un'atmosfera latina pazzesca e rendono ogni serata indimenticabile!</blockquote><figcaption>Davide D. <span>· Itália · avaliação 5 estrelas no Google</span></figcaption></figure>
-        <figure class="depo-item reveal"><blockquote>Todo mundo amou o show, e eu também! Vocês foram um dos pontos principais da festa. As músicas, muito boas... eu amei muito, fiquei apaixonada.</blockquote><figcaption>Debutante <span>· festa de 15 anos · depoimento em vídeo</span></figcaption></figure>
+        <figure class="depo-item reveal" data-i18n="depo.1"><blockquote>No nosso casamento, souberam sentir o clima da festa, escolher as músicas certas e não deixou ninguém parado na pista. Foi simplesmente perfeito e tornou nossa noite ainda mais especial. Com certeza recomendamos de olhos fechados!</blockquote><figcaption>Herica Matos <span>· casamento · avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal" data-i18n="depo.2"><blockquote>Simplesmente incrível. Não é só música, é experiência. Quando eles tocam, parece que tudo ao redor muda, a energia, o clima, as pessoas... é difícil até descrever. Você sente.</blockquote><figcaption>Raphael Vilela Dias <span>· avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal" data-i18n="depo.3"><blockquote>Nosso muito obrigada à Beboots por tornar nossas Bodas ainda mais especiais! Foi um sucesso, e a alegria dos nossos convidados teve um toque especial graças a vocês. Gratidão pela parceria e pelo excelente trabalho!</blockquote><figcaption>Cíntia Costa Soares <span>· bodas · avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal" data-i18n="depo.4"><blockquote lang="it">I Be Boots sono sempre una garanzia! Musica bellissima, loro magnetici e un intrattenimento davvero coinvolgente. Portano un'atmosfera latina pazzesca e rendono ogni serata indimenticabile!</blockquote><figcaption>Davide D. <span>· Itália · avaliação 5 estrelas no Google</span></figcaption></figure>
+        <figure class="depo-item reveal" data-i18n="depo.5"><blockquote>Todo mundo amou o show, e eu também! Vocês foram um dos pontos principais da festa. As músicas, muito boas... eu amei muito, fiquei apaixonada.</blockquote><figcaption>Debutante <span>· festa de 15 anos · depoimento em vídeo</span></figcaption></figure>
       </div>
+      <p class="depo-note" data-i18n="depo.note"></p>
     </div>
   </section>
 
   <div class="to-light" aria-hidden="true"></div>
 
   <!-- ======================= FAQ ======================= -->
-  <section class="faq light" aria-label="Perguntas frequentes">
+  <section class="faq light" aria-label="Perguntas frequentes" data-i18n-attr="aria-label:faq.eyebrow">
     <div class="wrap faq-grid">
       <div>
-        <p class="eyebrow reveal">Perguntas frequentes</p>
-        <h2 class="reveal d1">Antes de <em>contratar</em>.</h2>
+        <p class="eyebrow reveal" data-i18n="faq.eyebrow">Perguntas frequentes</p>
+        <h2 class="reveal d1" data-i18n="faq.h2">Antes de <em>contratar</em>.</h2>
       </div>
       <div class="faq-list reveal d1">
-        <details><summary>O que exatamente a Be Boots faz no evento?</summary><p>Um show completo: mixagem, voz ao vivo, interação e performance, com dois artistas no comando da pista do começo ao fim. Não é um DJ atrás da mesa; é a festa acontecendo no meio dos seus convidados.</p></details>
-        <details><summary>Vocês tocam o estilo que eu quero?</summary><p>Sim. Da música disco ao funk, do pop rock ao samba, caminhamos por todos os estilos. A curadoria é desenhada com você, a partir do tema e do público do seu evento.</p></details>
-        <details><summary>Como funcionam o figurino e o tema?</summary><p>Cada evento recebe um figurino autoral, pensado para a estética da festa. Se você tem um tema, a dupla se veste para fazer parte do cenário que você construiu.</p></details>
-        <details><summary>Vocês atendem fora de São Paulo? E fora do Brasil?</summary><p>Sim. Já são mais de 20 cidades e 6 países, com mais de 170 shows internacionais. Deslocamento e logística entram detalhados na proposta, sem surpresas.</p></details>
-        <details><summary>Como funciona o investimento?</summary><p>Cada show é desenhado sob medida: formato, figurino, logística e praça mudam o valor. Depois da reunião, a proposta sai personalizada para o seu evento: cada tema é respeitado com exclusividade e cuidado, do repertório ao figurino.</p></details>
-        <details><summary>Como eu reservo a minha data?</summary><p><a href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Quero%20consultar%20a%20disponibilidade%20da%20minha%20data.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener">Chama a gente no WhatsApp</a> com a data, a cidade e o tipo de evento. A gente confirma a disponibilidade e agenda uma reunião para desenhar o show do seu evento.</p></details>
+        <details><summary data-i18n="faq.q1">O que exatamente a Be Boots faz no evento?</summary><p data-i18n="faq.a1">Um show completo: mixagem, voz ao vivo, interação e performance, com dois artistas no comando da pista do começo ao fim. Não é um DJ atrás da mesa; é a festa acontecendo no meio dos seus convidados.</p></details>
+        <details><summary data-i18n="faq.q2">Vocês tocam o estilo que eu quero?</summary><p data-i18n="faq.a2">Sim. Da música disco ao funk, do pop rock ao samba, caminhamos por todos os estilos. A curadoria é desenhada com você, a partir do tema e do público do seu evento.</p></details>
+        <details><summary data-i18n="faq.q3">Como funcionam o figurino e o tema?</summary><p data-i18n="faq.a3">Cada evento recebe um figurino autoral, pensado para a estética da festa. Se você tem um tema, a dupla se veste para fazer parte do cenário que você construiu.</p></details>
+        <details><summary data-i18n="faq.q4">Vocês atendem fora de São Paulo? E fora do Brasil?</summary><p data-i18n="faq.a4">Sim. Já são mais de 20 cidades e 6 países, com mais de 170 shows internacionais. Deslocamento e logística entram detalhados na proposta, sem surpresas.</p></details>
+        <details><summary data-i18n="faq.q5">Como funciona o investimento?</summary><p data-i18n="faq.a5">Cada show é desenhado sob medida: formato, figurino, logística e praça mudam o valor. Depois da reunião, a proposta sai personalizada para o seu evento: cada tema é respeitado com exclusividade e cuidado, do repertório ao figurino.</p></details>
+        <details><summary data-i18n="faq.q6">Como eu reservo a minha data?</summary><p data-i18n="faq.a6"><a href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Quero%20consultar%20a%20disponibilidade%20da%20minha%20data.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" data-wa="faq" target="_blank" rel="noopener">Chama a gente no WhatsApp</a> com a data, a cidade e o tipo de evento. A gente confirma a disponibilidade e agenda uma reunião para desenhar o show do seu evento.</p></details>
       </div>
     </div>
   </section>
 
   <!-- ======================= CTA ======================= -->
-  <section id="contato" class="cta" aria-label="Contato">
+  <section id="contato" class="cta" aria-label="Contato" data-i18n-attr="aria-label:a.contato">
     <div class="cta-copy">
-      <p class="eyebrow reveal">Consultar disponibilidade</p>
-      <h2 class="reveal d1">A próxima festa é a <em>sua</em>.</h2>
-      <p class="reveal d2">Conta pra gente a data, a cidade e o tipo de evento. A gente responde com a disponibilidade e agenda a sua reunião.</p>
-      <div class="reveal d3"><a class="btn btn-solid" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener"><span>Chamar a Be Boots no WhatsApp</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
-      <p class="cta-small reveal d3">São Paulo · Brasil &amp; exterior · Bem-vindo ao mundo Be Boots</p>
+      <p class="eyebrow reveal" data-i18n="cta.eyebrow">Consultar disponibilidade</p>
+      <h2 class="reveal d1" data-i18n="cta.h2">A próxima festa é a <em>sua</em>.</h2>
+      <p class="reveal d2" data-i18n="cta.p">Conta pra gente a data, a cidade e o tipo de evento. A gente responde com a disponibilidade e agenda a sua reunião.</p>
+      <div class="reveal d3"><a class="btn btn-solid" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" data-wa="site" target="_blank" rel="noopener"><span data-i18n="cta.btn">Chamar a Be Boots no WhatsApp</span><span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+      <p class="cta-small reveal d3" data-i18n="cta.small">São Paulo · Brasil &amp; exterior · Bem-vindo ao mundo Be Boots</p>
     </div>
     <div class="cta-img" aria-hidden="true"><img src="media/fotos/g-apontando.jpg" alt="" width="1067" height="1600" loading="lazy"></div>
   </section>
@@ -843,15 +871,15 @@
 <footer>
   <span class="foot-ghost" aria-hidden="true">Be Boots</span>
   <div class="foot">
-    <a class="brand foot-logo" href="#inicio" aria-label="Be Boots: início"><img src="media/logo-script.png" alt="Be Boots, Música e Entretenimento" width="1224" height="590"></a>
+    <a class="brand foot-logo" href="#inicio" aria-label="Be Boots: início" data-i18n-attr="aria-label:a.home"><img src="media/logo-script.png" alt="Be Boots, Música e Entretenimento" data-i18n-attr="alt:a.logo" width="1224" height="590"></a>
     <a href="https://www.instagram.com/be.boots/" target="_blank" rel="noopener">@be.boots</a>
     <a href="https://www.facebook.com/djsbeboots/" target="_blank" rel="noopener">Facebook</a>
-    <span>São Paulo · Brasil &amp; exterior</span>
-    <a class="foot-rk" href="https://instagram.com/rkperformance.digital" target="_blank" rel="noopener">Site por RK Performance</a>
+    <span data-i18n="loc">São Paulo · Brasil &amp; exterior</span>
+    <a class="foot-rk" href="https://instagram.com/rkperformance.digital" target="_blank" rel="noopener" data-i18n="foot.rk">Site por RK Performance</a>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" target="_blank" rel="noopener" aria-label="Falar com a Be Boots no WhatsApp">
+<a class="wa-float" href="https://wa.me/5511988652826?text=Ol%C3%A1%2C%20Be%20Boots%21%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20quero%20ver%20a%20disponibilidade.%0AData%3A%20%0ACidade%2FLocal%3A%20%0ATipo%20de%20evento%3A%20" data-wa="site" target="_blank" rel="noopener" aria-label="Falar com a Be Boots no WhatsApp" data-i18n-attr="aria-label:a.wa">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15.1L2 22l5-1.4A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.1 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.8 4.4 3.8 2.2.9 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.5-.3-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5v-.5L9.6 8.2c-.2-.4-.4-.4-.7-.4Z"/></svg>
 </a>
 
@@ -861,6 +889,595 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   root.classList.remove('no-js'); root.classList.add('js');
   if (reduce) root.classList.add('reduce');
+
+  // ---------- idiomas: o português é o próprio HTML; EN, ES e IT vêm do dicionário ----------
+  // Mesmo motor do site do Bruno Daner (data-i18n + memória em localStorage), com italiano,
+  // atributos (aria-label, alt), mensagem do WhatsApp no idioma do visitante e link direto por ?lang=it
+  var I18N = {
+    "en": {
+      "meta.title": "Be Boots · More than music. A stage experience.",
+      "meta.desc": "Be Boots: Vini & Zeca, the duo that blends DJ sets and live vocals into shows for high-end events. 800+ shows, 30,000+ people at a single event, 6 countries. Weddings, birthdays, corporate events and festivals.",
+      "ui.menu": "Menu",
+      "ui.close": "Close",
+      "nav.exp": "The experience",
+      "nav.ev": "Events",
+      "nav.vid": "Videos",
+      "nav.int": "International",
+      "nav.cta": "Check my date",
+      "menu.eyebrow": "Be Boots · Music &amp; Entertainment",
+      "hero.h1": "<span class=\"k\">Your event doesn’t need another DJ.</span><span class=\"l\">It needs a <em>show</em>.</span>",
+      "cta.data": "Check my date",
+      "hero.watch": "Watch the shows",
+      "hero.cl": "<strong>800+</strong> shows · <strong>6</strong> countries",
+      "loc": "São Paulo · Brazil &amp; beyond",
+      "aut.eyebrow": "Be Boots in numbers",
+      "aut.h2": "A reputation built <em>on stage</em>.",
+      "aut.n1v": "30,000+",
+      "aut.n2v": "800+",
+      "aut.n3v": "170+",
+      "aut.n1": "people at a single event",
+      "aut.n2": "shows performed",
+      "aut.n3": "international shows",
+      "aut.n4": "<span class=\"stars\">★★★★★</span> Google rating",
+      "par.eyebrow": "Stages and partners",
+      "par.ps": "City of Porto Seguro",
+      "par.pj": "City of Piraju",
+      "par.fv": "Fidenza Village · Italy",
+      "par.ms": "Mama Shelter · Portugal",
+      "man.eyebrow": "The experience",
+      "man.h2": "It’s not about<br>pressing play.<br>It’s about owning<br>the <em>stage</em>.",
+      "man.lead": "Music, voice, interaction and presence. All live, all Be Boots.",
+      "man.p1t": "<span>I</span> Two forces on stage",
+      "man.p1": "A DJ who commands the dance floor with precision and personality, and a voice that transforms every party into a true event. The set doesn’t play itself: it happens with us, right in the middle of your dance floor.",
+      "man.p2t": "<span>II</span> Refined musical direction",
+      "man.p2": "From disco to Brazilian funk, from pop rock to samba: we move through every style so that your party is one of a kind. The curation starts with your event, not with a ready-made setlist.",
+      "man.p3t": "<span>III</span> Crowd engagement",
+      "man.p3": "We’ve had more than 30,000 people singing together at a single event. But whether it’s a festival or a dinner for 50 guests, the standard is the same: on our dance floor, the one who shines is you.",
+      "man.fecho": "All made for those who live for experiences, not just moments.",
+      "look.eyebrow": "Editorial",
+      "look.h2": "Fashion isn’t clothing.<br>It’s a <em>signature</em>.",
+      "look.p": "Each performance is given a unique visual identity, aligned with the atmosphere of the event. Often, it’s the host herself who chooses the Be Boots outfits to complete the setting she has created.",
+      "look.q": "“It’s not about vanity. It’s about purpose, on stage and in life.”",
+      "fig.eyebrow": "The characters",
+      "fig.lead": "Book Be Boots and you don’t just get a show: you get the two artists your guests will want to meet by the end of the night.",
+      "fig.p1": "Five years on the road, built on <b>consistency, authenticity and truth</b>. A duo that sings, mixes, dresses for your theme and leads the party from the middle of the dance floor, not from behind a booth.",
+      "fig.p2": "That’s why everyone who books Be Boots ends the night with two new friends! <b>It’s not just a DJ duo. It’s Vini and Zeca.</b>",
+      "fig.card": "<h3>Nice to meet you</h3><p>The duo in their own words · in Portuguese</p>",
+      "ev.eyebrow": "Exclusive sets for premium experiences",
+      "ev.h2": "<em>High-end</em> events.",
+      "ev.p": "From a couple’s “I do” to a 50th-birthday toast, from a brand launch to a festival stage: the show is tailor-made for your event.",
+      "ato1.n": "Act I",
+      "ato2.n": "Act II",
+      "ato3.n": "Act III",
+      "ato4.n": "Act IV",
+      "ato1.h": "Weddings",
+      "ato1.p": "<span class=\"q\">\"Being chosen by so many couples has been one of the most moving parts of our career.\"</span> Music curated with the couple, a keen read of the dance floor and the right energy at every stage of the party, until the last guest leaves.",
+      "ato2.h": "Sweet 15 &amp; birthdays",
+      "ato2.p": "40, 50, 60 and 70 are the new 15. <span class=\"q\">\"On our dance floor, she owns the night\":</span> debutantes and guests of honor experience the party as its stars, not as spectators.",
+      "ato3.h": "Corporate &amp; brands",
+      "ato3.p": "Fashion, music and Be Boots in one place: conventions, award ceremonies and brand events for names such as Banco do Brasil, Fidenza Village in Italy and Mama Shelter in Portugal, with repertoire and outfits built around the theme of the occasion.",
+      "ato4.h": "Festivals &amp; big stages",
+      "ato4.p": "From opening the Porto Seguro Carnival to Rainbow Fest and festivals in Italy: more than 30,000 people gathered at a single event. When the stage grows, the show grows with it.",
+      "vid.eyebrow": "Watch with sound on",
+      "vid.h2": "The show, <em>live</em>.",
+      "vid.p": "Nothing here is a rehearsal or stock footage: it’s what your guests are going to experience. Tap a video and listen with the sound on.",
+      "card1": "<h3>Wedding</h3><p>The bride at the heart of the party · gold</p>",
+      "card2": "<h3>The official film</h3><p>A gala night · from the red carpet to the stage</p>",
+      "card3": "<h3>Rainbow Fest</h3><p>The 700th show · Juiz de Fora</p>",
+      "card4": "<h3>Porto Seguro</h3><p>Carnival opening</p>",
+      "card5": "<h3>Corporate</h3><p>Brand event · conventions and awards</p>",
+      "card6": "<h3>Sweet 15</h3><p>In the debutante’s words · in Portuguese</p>",
+      "vid.hint": "Drag or use the arrows",
+      "int.eyebrow": "From Brazil to the world",
+      "int.h2": "Six countries.<br>One <em>dance floor</em>.",
+      "int.lead": "From São Paulo to festivals in Italy, from Ibiza to Portugal: more than 170 international shows, and counting.",
+      "int.p": "Our European season has already taken us to stages and venues such as Fidenza Village and Il Colle, as well as weddings in Italy, with the same care as always: style, energy and unforgettable experiences in any language.",
+      "pais.br": "Brazil",
+      "pais.it": "Italy",
+      "pais.es": "Spain · Ibiza",
+      "pais.pt": "Portugal",
+      "pais.fr": "France",
+      "pais.ar": "Argentina",
+      "int.cap": "International season · Europe",
+      "depo.eyebrow": "Reviews",
+      "depo.h2": "In the words of those who <em>lived it</em>.",
+      "depo.1": "<blockquote>At our wedding, they knew how to read the mood of the party, choose the right songs and keep everyone on the dance floor. It was simply perfect and made our night even more special. We definitely recommend them, without hesitation!</blockquote><figcaption>Herica Matos <span>· wedding · 5-star Google review</span></figcaption>",
+      "depo.2": "<blockquote>Simply incredible. It’s not just music, it’s an experience. When they play, everything around you seems to change: the energy, the mood, the people... it’s hard to even describe. You feel it.</blockquote><figcaption>Raphael Vilela Dias <span>· 5-star Google review</span></figcaption>",
+      "depo.3": "<blockquote>Many thanks to Be Boots for making our wedding anniversary even more special! It was a success, and our guests’ joy had a special touch thanks to you. Grateful for the partnership and the excellent work!</blockquote><figcaption>Cíntia Costa Soares <span>· wedding anniversary · 5-star Google review</span></figcaption>",
+      "depo.4": "<blockquote>Be Boots are always a sure thing! Beautiful music, magnetic performers and truly engaging entertainment. They bring an incredible Latin atmosphere and make every night unforgettable!</blockquote><figcaption>Davide D. <span>· Italy · 5-star Google review</span></figcaption>",
+      "depo.5": "<blockquote>Everyone loved the show, and so did I! You were one of the highlights of the party. The songs were so good... I loved it so much, I fell in love.</blockquote><figcaption>Debutante <span>· Sweet 15 party · video testimonial</span></figcaption>",
+      "depo.note": "Reviews translated from Portuguese and Italian.",
+      "faq.eyebrow": "Frequently asked questions",
+      "faq.h2": "Before you <em>book</em>.",
+      "faq.q1": "What exactly does Be Boots do at the event?",
+      "faq.a1": "A complete show: mixing, live vocals, interaction and performance, with two artists in command of the dance floor from start to finish. It’s not a DJ behind a booth; it’s the party happening right among your guests.",
+      "faq.q2": "Do you play the style I want?",
+      "faq.a2": "Yes. From disco to Brazilian funk, from pop rock to samba, we move through every style. The music is curated with you, based on your event’s theme and crowd.",
+      "faq.q3": "How do the outfits and the theme work?",
+      "faq.a3": "Every event gets its own original outfits, designed for the aesthetic of the party. If you have a theme, the duo dresses to become part of the setting you have created.",
+      "faq.q4": "Do you perform outside São Paulo? And outside Brazil?",
+      "faq.a4": "Yes. More than 20 cities and 6 countries so far, with over 170 international shows. Travel and logistics are detailed in the proposal, with no surprises.",
+      "faq.q5": "How does pricing work?",
+      "faq.a5": "Every show is tailor-made: format, outfits, logistics and location all affect the price. After our meeting, you’ll receive a proposal customized for your event: every theme receives exclusive attention and care, from the repertoire to the outfits.",
+      "faq.q6": "How do I book my date?",
+      "faq.a6": "<a data-wa=\"faq\" href=\"#contato\" target=\"_blank\" rel=\"noopener\">Message us on WhatsApp</a> with your date, city and type of event. We’ll confirm availability and schedule a meeting to design the show for your event.",
+      "cta.eyebrow": "Check availability",
+      "cta.h2": "The next party is <em>yours</em>.",
+      "cta.p": "Tell us your date, city and type of event. We’ll reply with our availability and schedule your meeting.",
+      "cta.btn": "Message Be Boots on WhatsApp",
+      "cta.small": "São Paulo · Brazil &amp; beyond · Welcome to the world of Be Boots",
+      "foot.rk": "Website by RK Performance",
+      "a.home": "Be Boots: home",
+      "a.logo": "Be Boots, Music and Entertainment",
+      "a.nav": "Site sections",
+      "a.hero": "Introduction",
+      "a.man": "The Be Boots experience",
+      "a.look": "Be Boots editorial",
+      "a.fig": "Vini and Zeca",
+      "a.ev": "Event types",
+      "a.vid": "Videos of real shows",
+      "a.botas": "The theater curtain opens: the chandelier, the Be Boots logo and two pairs of boots under the spotlight",
+      "a.int": "International presence",
+      "a.contato": "Contact",
+      "a.prev": "Previous video",
+      "a.next": "Next video",
+      "a.wa": "Chat with Be Boots on WhatsApp",
+      "a.play0": "Watch: Nice to meet you",
+      "a.title0": "Nice to meet you: the duo in their own words",
+      "a.play1": "Watch: Wedding",
+      "a.title1": "Wedding: the bride at the heart of the party",
+      "a.play2": "Watch: The official film",
+      "a.title2": "The official film: a night with Be Boots",
+      "a.play3": "Watch: Rainbow Fest",
+      "a.title3": "Rainbow Fest: the 700th show",
+      "a.play4": "Watch: Porto Seguro Carnival",
+      "a.title4": "Porto Seguro Carnival: official opening",
+      "a.play5": "Watch: Corporate",
+      "a.title5": "Corporate: brand event",
+      "a.play6": "Watch: Sweet 15",
+      "a.title6": "Sweet 15: the debutante’s testimonial",
+      "alt.duomo": "The duo’s boots in the foreground, in front of Milan’s Duomo",
+      "alt.mercedes": "Vini and Zeca in a red blazer and a western shirt, in front of a classic Mercedes",
+      "alt.praia": "The duo in original outfits with studded caps and spiked sunglasses, by the sea at sunset",
+      "alt.costas": "The duo seen from behind, in black shirts, holding the headphones and the microphone, under golden light",
+      "alt.solo1": "Editorial portrait of one of the Be Boots artists, hair in the wind",
+      "alt.solo2": "Editorial portrait of one of the Be Boots artists, smiling, hair in motion",
+      "alt.urbano": "The Be Boots duo in a sepia-toned urban portrait, laughing",
+      "alt.decks": "The duo behind the decks in golden light"
+    },
+    "es": {
+      "meta.title": "Be Boots · Más que DJs. Artistas de escenario.",
+      "meta.desc": "Be Boots: Vini & Zeca, el dúo que une DJ y voz en vivo en shows para eventos de alto nivel. +800 shows, +30.000 personas en un solo evento, 6 países. Bodas, cumpleaños, eventos corporativos y festivales.",
+      "ui.menu": "Menú",
+      "ui.close": "Cerrar",
+      "nav.exp": "La experiencia",
+      "nav.ev": "Eventos",
+      "nav.vid": "Videos",
+      "nav.int": "Internacional",
+      "nav.cta": "Consultar fecha",
+      "menu.eyebrow": "Be Boots · Música y Entretenimiento",
+      "hero.h1": "<span class=\"k\">Tu evento no necesita otro DJ.</span><span class=\"l\">Necesita un <em>show</em>.</span>",
+      "cta.data": "Consultar mi fecha",
+      "hero.watch": "Ver los shows",
+      "hero.cl": "<strong>+800</strong> shows · <strong>6</strong> países",
+      "loc": "São Paulo · Brasil y el extranjero",
+      "aut.eyebrow": "Be Boots en números",
+      "aut.h2": "La autoridad viene <em>del escenario</em>.",
+      "aut.n1v": "+30.000",
+      "aut.n2v": "+800",
+      "aut.n3v": "+170",
+      "aut.n1": "personas en un solo evento",
+      "aut.n2": "shows realizados",
+      "aut.n3": "shows internacionales",
+      "aut.n4": "<span class=\"stars\">★★★★★</span> valoración en Google",
+      "par.eyebrow": "Escenarios y aliados",
+      "par.ps": "Alcaldía de Porto Seguro",
+      "par.pj": "Alcaldía de Piraju",
+      "par.fv": "Fidenza Village · Italia",
+      "par.ms": "Mama Shelter · Portugal",
+      "man.eyebrow": "La experiencia",
+      "man.h2": "No se trata de<br>poner música.<br>Se trata de dominar<br>el <em>escenario</em>.",
+      "man.lead": "Música, voz, interacción y presencia. Todo en vivo, todo Be Boots.",
+      "man.p1t": "<span>I</span> Dos fuerzas en el escenario",
+      "man.p1": "Un DJ que conduce la pista con precisión y personalidad, y una voz que transforma la fiesta en un verdadero acontecimiento. El set no suena solo: sucede con nosotros, en medio de tu pista.",
+      "man.p2t": "<span>II</span> Dirección musical refinada",
+      "man.p2": "De la música disco al funk brasileño, del pop rock a la samba: recorremos todos los estilos para que tu fiesta sea única. La curaduría nace de tu evento, no de una lista ya hecha.",
+      "man.p3t": "<span>III</span> Conducción del público",
+      "man.p3": "Más de 30.000 personas cantando juntas en un solo evento. Pero sea un festival o una cena de 50 invitados, el estándar es el mismo: en nuestra pista, quien brilla eres tú.",
+      "man.fecho": "Todo hecho para quienes viven experiencias y no solo momentos.",
+      "look.eyebrow": "Editorial",
+      "look.h2": "La moda no es ropa.<br>Es una <em>firma</em>.",
+      "look.p": "Cada presentación recibe una identidad visual única, alineada con la atmósfera del evento. Muchas veces, es la propia anfitriona quien elige el vestuario de Be Boots para completar la escenografía que ella creó.",
+      "look.q": "“No se trata de vanidad. Se trata de propósito, en el show y en la vida.”",
+      "fig.eyebrow": "Los personajes",
+      "fig.lead": "Quien contrata a Be Boots no se lleva solo un show: se lleva a los dos artistas que los invitados van a querer conocer al final de la noche.",
+      "fig.p1": "Cinco años de trayectoria construidos con <b>constancia, autenticidad y verdad</b>. Un dúo que canta, mezcla, se viste para tu temática y conduce la fiesta desde dentro de la pista, y no detrás de una cabina.",
+      "fig.p2": "¡Por eso quien contrata a Be Boots termina el evento con dos amigos nuevos! <b>No es solo el dúo de DJs. Son Vini y Zeca.</b>",
+      "fig.card": "<h3>Mucho gusto</h3><p>El dúo se presenta · en portugués</p>",
+      "ev.eyebrow": "Sets exclusivos para experiencias premium",
+      "ev.h2": "Eventos de <em>alto nivel</em>.",
+      "ev.p": "Del “sí” de una pareja al brindis de los 50 años, del lanzamiento de una marca al escenario de un festival: el show se diseña a medida para tu evento.",
+      "ato1.n": "Acto I",
+      "ato2.n": "Acto II",
+      "ato3.n": "Acto III",
+      "ato4.n": "Acto IV",
+      "ato1.h": "Bodas",
+      "ato1.p": "<span class=\"q\">\"Ser la elección de tantas parejas ha sido una de las partes más emocionantes de nuestra carrera.\"</span> Curaduría musical con los novios, lectura fina de la pista y la energía justa en cada fase de la fiesta, hasta el último invitado.",
+      "ato2.h": "15 años &amp; cumpleaños",
+      "ato2.p": "Los 40, 50, 60 y 70 son los nuevos 15. <span class=\"q\">\"En nuestra pista, ella es la dueña absoluta de la noche\":</span> quinceañeras y cumpleañeras viven la fiesta como protagonistas, no como espectadoras.",
+      "ato3.h": "Corporativo &amp; marcas",
+      "ato3.p": "Moda, música y Be Boots en un solo lugar: convenciones, entregas de premios y eventos de marca, como los de Banco do Brasil, Fidenza Village, en Italia, y Mama Shelter, en Portugal, con repertorio y vestuario según la temática de la ocasión.",
+      "ato4.h": "Festivales &amp; grandes escenarios",
+      "ato4.p": "De la apertura del Carnaval de Porto Seguro al Rainbow Fest y a los festivales de Italia: más de 30.000 personas reunidas en un solo evento. Cuando el escenario crece, el show crece con él.",
+      "vid.eyebrow": "Míralo con sonido",
+      "vid.h2": "El show, en <em>vivo</em>.",
+      "vid.p": "Aquí nada es ensayo ni banco de imágenes: es lo que tus invitados van a vivir. Toca un video para verlo con sonido.",
+      "card1": "<h3>Boda</h3><p>La novia en el centro de la fiesta · oro</p>",
+      "card2": "<h3>El film oficial</h3><p>Una noche de gala · de la alfombra roja al escenario</p>",
+      "card3": "<h3>Rainbow Fest</h3><p>El show número 700 · Juiz de Fora</p>",
+      "card4": "<h3>Porto Seguro</h3><p>Apertura del Carnaval</p>",
+      "card5": "<h3>Corporativo</h3><p>Evento de marca · convenciones y premios</p>",
+      "card6": "<h3>15 años</h3><p>En la voz de la quinceañera · en portugués</p>",
+      "vid.hint": "Arrastra o usa las flechas",
+      "int.eyebrow": "De Brasil para el mundo",
+      "int.h2": "Seis países.<br>Una <em>pista</em>.",
+      "int.lead": "De São Paulo a los festivales de Italia, de Ibiza a Portugal: más de 170 shows internacionales, y sumando.",
+      "int.p": "La temporada europea ya pasó por escenarios y locales como Fidenza Village, Il Colle y bodas en Italia, con el mismo cuidado de siempre: estilo, energía y experiencias inolvidables en cualquier idioma.",
+      "pais.br": "Brasil",
+      "pais.it": "Italia",
+      "pais.es": "España · Ibiza",
+      "pais.pt": "Portugal",
+      "pais.fr": "Francia",
+      "pais.ar": "Argentina",
+      "int.cap": "Temporada internacional · Europa",
+      "depo.eyebrow": "Reseñas",
+      "depo.h2": "La palabra de quien lo <em>vivió</em>.",
+      "depo.1": "<blockquote>En nuestra boda supieron sentir el clima de la fiesta, elegir las canciones correctas y no dejaron a nadie quieto en la pista. Fue simplemente perfecto e hizo nuestra noche aún más especial. ¡Sin duda los recomendamos con los ojos cerrados!</blockquote><figcaption>Herica Matos <span>· boda · reseña de 5 estrellas en Google</span></figcaption>",
+      "depo.2": "<blockquote>Simplemente increíble. No es solo música, es una experiencia. Cuando tocan, parece que todo alrededor cambia: la energía, el ambiente, las personas... es difícil hasta describirlo. Lo sientes.</blockquote><figcaption>Raphael Vilela Dias <span>· reseña de 5 estrellas en Google</span></figcaption>",
+      "depo.3": "<blockquote>¡Nuestro enorme agradecimiento a Be Boots por hacer nuestro aniversario de boda aún más especial! Fue un éxito, y la alegría de nuestros invitados tuvo un toque especial gracias a ustedes. ¡Gratitud por la colaboración y por el excelente trabajo!</blockquote><figcaption>Cíntia Costa Soares <span>· aniversario de boda · reseña de 5 estrellas en Google</span></figcaption>",
+      "depo.4": "<blockquote>¡Los Be Boots son siempre una garantía! Música bellísima, ellos magnéticos y un entretenimiento realmente envolvente. ¡Traen una atmósfera latina increíble y hacen que cada noche sea inolvidable!</blockquote><figcaption>Davide D. <span>· Italia · reseña de 5 estrellas en Google</span></figcaption>",
+      "depo.5": "<blockquote>¡A todo el mundo le encantó el show, y a mí también! Ustedes fueron uno de los puntos fuertes de la fiesta. Las canciones, muy buenas... me encantó, quedé enamorada.</blockquote><figcaption>Quinceañera <span>· fiesta de 15 años · testimonio en video</span></figcaption>",
+      "depo.note": "Reseñas traducidas del portugués y del italiano.",
+      "faq.eyebrow": "Preguntas frecuentes",
+      "faq.h2": "Antes de <em>contratar</em>.",
+      "faq.q1": "¿Qué hace exactamente Be Boots en el evento?",
+      "faq.a1": "Un show completo: mezcla, voz en vivo, interacción y performance, con dos artistas al mando de la pista de principio a fin. No es un DJ detrás de la cabina; es la fiesta sucediendo en medio de tus invitados.",
+      "faq.q2": "¿Tocan el estilo que yo quiero?",
+      "faq.a2": "Sí. De la música disco al funk brasileño, del pop rock a la samba, recorremos todos los estilos. La curaduría se diseña contigo, a partir de la temática y del público de tu evento.",
+      "faq.q3": "¿Cómo funcionan el vestuario y la temática?",
+      "faq.a3": "Cada evento recibe un vestuario de autor, pensado para la estética de la fiesta. Si tienes una temática, el dúo se viste para formar parte de la escenografía que creaste.",
+      "faq.q4": "¿Hacen shows fuera de São Paulo? ¿Y fuera de Brasil?",
+      "faq.a4": "Sí. Ya son más de 20 ciudades y 6 países, con más de 170 shows internacionales. Traslados y logística van detallados en la propuesta, sin sorpresas.",
+      "faq.q5": "¿Cómo funciona la inversión?",
+      "faq.a5": "Cada show se diseña a medida: formato, vestuario, logística y ciudad influyen en el presupuesto. Después de la reunión, recibes una propuesta personalizada para tu evento: cada temática se respeta con exclusividad y cuidado, del repertorio al vestuario.",
+      "faq.q6": "¿Cómo reservo mi fecha?",
+      "faq.a6": "<a data-wa=\"faq\" href=\"#contato\" target=\"_blank\" rel=\"noopener\">Escríbenos por WhatsApp</a> con la fecha, la ciudad y el tipo de evento. Confirmamos la disponibilidad y agendamos una reunión para diseñar el show de tu evento.",
+      "cta.eyebrow": "Consultar disponibilidad",
+      "cta.h2": "La próxima fiesta es la <em>tuya</em>.",
+      "cta.p": "Cuéntanos la fecha, la ciudad y el tipo de evento. Respondemos con la disponibilidad y agendamos tu reunión.",
+      "cta.btn": "Escribir a Be Boots por WhatsApp",
+      "cta.small": "São Paulo · Brasil y el extranjero · Bienvenido al mundo Be Boots",
+      "foot.rk": "Sitio web por RK Performance",
+      "a.home": "Be Boots: inicio",
+      "a.logo": "Be Boots, Música y Entretenimiento",
+      "a.nav": "Secciones del sitio",
+      "a.hero": "Presentación",
+      "a.man": "La experiencia Be Boots",
+      "a.look": "Editorial Be Boots",
+      "a.fig": "Vini y Zeca",
+      "a.ev": "Tipos de evento",
+      "a.vid": "Videos de shows reales",
+      "a.botas": "El telón del teatro se abre: la lámpara de araña, la marca Be Boots y dos pares de botas bajo el foco de luz",
+      "a.int": "Presencia internacional",
+      "a.contato": "Contacto",
+      "a.prev": "Video anterior",
+      "a.next": "Siguiente video",
+      "a.wa": "Hablar con Be Boots por WhatsApp",
+      "a.play0": "Ver: Mucho gusto",
+      "a.title0": "Mucho gusto: el dúo se presenta",
+      "a.play1": "Ver: Boda",
+      "a.title1": "Boda: la novia en el centro de la fiesta",
+      "a.play2": "Ver: El film oficial",
+      "a.title2": "El film oficial: una noche con Be Boots",
+      "a.play3": "Ver: Rainbow Fest",
+      "a.title3": "Rainbow Fest: el show número 700",
+      "a.play4": "Ver: Carnaval de Porto Seguro",
+      "a.title4": "Carnaval de Porto Seguro: apertura oficial",
+      "a.play5": "Ver: Corporativo",
+      "a.title5": "Corporativo: evento de marca",
+      "a.play6": "Ver: 15 años",
+      "a.title6": "15 años: el testimonio de la quinceañera",
+      "alt.duomo": "Las botas del dúo en primer plano frente al Duomo de Milán",
+      "alt.mercedes": "Vini y Zeca con blazer rojo y camisa western frente a un Mercedes clásico",
+      "alt.praia": "El dúo con vestuario de autor, gorras con tachuelas y gafas con púas, junto al mar al atardecer",
+      "alt.costas": "El dúo de espaldas, con camisa negra, con los auriculares y el micrófono en las manos, bajo luz dorada",
+      "alt.solo1": "Retrato editorial de uno de los artistas de Be Boots, cabello al viento",
+      "alt.solo2": "Retrato editorial de uno de los artistas de Be Boots, sonriendo, cabello en movimiento",
+      "alt.urbano": "El dúo Be Boots en un retrato urbano en tono sepia, riendo",
+      "alt.decks": "El dúo detrás de la cabina de DJ, bajo luz dorada"
+    },
+    "it": {
+      "meta.title": "Be Boots · L’eccellenza dell’intrattenimento dal vivo",
+      "meta.desc": "Be Boots: Vini & Zeca, il duo che unisce DJ e voce dal vivo in show per eventi di alto livello. +800 show, +30.000 persone in un unico evento, 6 Paesi. Matrimoni, compleanni, eventi aziendali e festival.",
+      "ui.menu": "Menu",
+      "ui.close": "Chiudi",
+      "nav.exp": "L’esperienza",
+      "nav.ev": "Eventi",
+      "nav.vid": "Video",
+      "nav.int": "Internazionale",
+      "nav.cta": "Verifica la data",
+      "menu.eyebrow": "Be Boots · Musica e Intrattenimento",
+      "hero.h1": "<span class=\"k\">Il tuo evento non ha bisogno di un altro DJ.</span><span class=\"l\">Ha bisogno di uno <em>show</em>.</span>",
+      "cta.data": "Verifica la tua data",
+      "hero.watch": "Guarda gli show",
+      "hero.cl": "<strong>+800</strong> show · <strong>6</strong> Paesi",
+      "loc": "San Paolo · Brasile ed estero",
+      "aut.eyebrow": "Be Boots in numeri",
+      "aut.h2": "L’autorevolezza nasce <em>dal palco</em>.",
+      "aut.n1v": "+30.000",
+      "aut.n2v": "+800",
+      "aut.n3v": "+170",
+      "aut.n1": "persone in un unico evento",
+      "aut.n2": "show realizzati",
+      "aut.n3": "show internazionali",
+      "aut.n4": "<span class=\"stars\">★★★★★</span> recensioni Google",
+      "par.eyebrow": "Palchi e partner",
+      "par.ps": "Comune di Porto Seguro",
+      "par.pj": "Comune di Piraju",
+      "par.fv": "Fidenza Village · Italia",
+      "par.ms": "Mama Shelter · Portogallo",
+      "man.eyebrow": "L’esperienza",
+      "man.h2": "Non si tratta di<br>far partire una canzone.<br>Si tratta di dominare<br>il <em>palco</em>.",
+      "man.lead": "Musica, voce, interazione e presenza. Tutto dal vivo, tutto Be Boots.",
+      "man.p1t": "<span>I</span> Due forze sul palco",
+      "man.p1": "Un DJ che guida la pista con precisione e personalità, e una voce che trasforma ogni festa in un vero evento. Il set non suona da solo: prende vita con noi, in mezzo alla tua pista.",
+      "man.p2t": "<span>II</span> Direzione musicale raffinata",
+      "man.p2": "Dalla disco music al funk brasiliano, dal pop rock al samba: attraversiamo tutti gli stili perché la tua festa sia unica. La selezione musicale nasce dal tuo evento, non da una scaletta già pronta.",
+      "man.p3t": "<span>III</span> Conduzione del pubblico",
+      "man.p3": "Più di 30.000 persone hanno già cantato insieme in un unico evento. Ma che sia un festival o una cena per 50 invitati, lo standard è lo stesso: sulla nostra pista, a brillare sei tu.",
+      "man.fecho": "Tutto pensato per chi vive esperienze, e non soltanto momenti.",
+      "look.eyebrow": "Editoriale",
+      "look.h2": "La moda non è un abito.<br>È una <em>firma</em>.",
+      "look.p": "Ogni performance acquisisce un’identità visiva unica, in armonia con l’atmosfera dell’evento. Spesso è la padrona di casa in persona a scegliere i look dei Be Boots, per completare la scenografia che ha creato.",
+      "look.q": "“Non è questione di vanità. È avere uno scopo, nello show e nella vita.”",
+      "fig.eyebrow": "I personaggi",
+      "fig.lead": "Chi sceglie i Be Boots non porta a casa soltanto uno show: porta i due artisti che gli invitati vorranno conoscere a fine serata.",
+      "fig.p1": "Cinque anni di percorso, costruiti con <b>costanza, autenticità e verità</b>. Un duo che canta, mixa, si veste secondo il tuo tema e guida la festa da dentro la pista, e non da dietro una console.",
+      "fig.p2": "Ecco perché chi sceglie i Be Boots finisce l’evento con due nuovi amici! <b>Non sono soltanto un duo di DJ. Sono Vini e Zeca.</b>",
+      "fig.card": "<h3>Piacere</h3><p>Il duo si presenta · in portoghese</p>",
+      "ev.eyebrow": "Set esclusivi per esperienze d’eccellenza",
+      "ev.h2": "Eventi di <em>alto livello</em>.",
+      "ev.p": "Dal “sì” di una coppia al brindisi dei 50 anni, dal lancio di un brand al palco di un festival: lo show viene disegnato su misura per il tuo evento.",
+      "ato1.n": "Atto I",
+      "ato2.n": "Atto II",
+      "ato3.n": "Atto III",
+      "ato4.n": "Atto IV",
+      "ato1.h": "Matrimoni",
+      "ato1.p": "<span class=\"q\">\"Essere la scelta di così tante coppie è una delle emozioni più grandi della nostra carriera.\"</span> Selezione musicale insieme agli sposi, lettura attenta della pista e l’energia giusta in ogni fase della festa, fino all’ultimo invitato.",
+      "ato2.h": "15 anni &amp; compleanni",
+      "ato2.p": "In Brasile i 15 anni sono la festa del debutto in società. Oggi i 40, 50, 60 e 70 sono i nuovi 15. <span class=\"q\">\"Sulla nostra pista, la padrona assoluta della serata è lei\":</span> debuttanti e festeggiate vivono la festa da protagoniste, non da spettatrici.",
+      "ato3.h": "Corporate &amp; brand",
+      "ato3.p": "Moda, musica e Be Boots in un unico luogo: convention, premiazioni ed eventi per i brand, come Banco do Brasil, Fidenza Village (Italia) e Mama Shelter (Portogallo), con repertorio e look ispirati al tema dell’occasione.",
+      "ato4.h": "Festival &amp; grandi palchi",
+      "ato4.p": "Dall’apertura del Carnevale di Porto Seguro al Rainbow Fest e ai festival in Italia: più di 30.000 persone riunite in un unico evento. Quando il palco cresce, lo show cresce con lui.",
+      "vid.eyebrow": "Guarda con l’audio",
+      "vid.h2": "Lo show, dal <em>vivo</em>.",
+      "vid.p": "Qui non ci sono prove né immagini di repertorio: è quello che vivranno i tuoi invitati. Tocca un video e attiva l’audio.",
+      "card1": "<h3>Matrimonio</h3><p>La sposa al centro della festa · oro</p>",
+      "card2": "<h3>Il film ufficiale</h3><p>Una serata di gala · dal red carpet al palco</p>",
+      "card3": "<h3>Rainbow Fest</h3><p>Il 700º show · Juiz de Fora</p>",
+      "card4": "<h3>Porto Seguro</h3><p>Apertura del Carnevale</p>",
+      "card5": "<h3>Corporate</h3><p>Evento di brand · convention e premiazioni</p>",
+      "card6": "<h3>15 anni</h3><p>Dalla voce della festeggiata · in portoghese</p>",
+      "vid.hint": "Trascina o usa le frecce",
+      "int.eyebrow": "Dal Brasile al mondo",
+      "int.h2": "Sei Paesi.<br>Una <em>pista</em>.",
+      "int.lead": "Da San Paolo ai festival in Italia, da Ibiza al Portogallo: più di 170 show internazionali, e non ci fermiamo qui.",
+      "int.p": "La stagione europea ha già toccato palchi e location come Fidenza Village e Il Colle, oltre a matrimoni in Italia, con la cura di sempre: stile, energia ed esperienze indimenticabili in qualsiasi lingua.",
+      "pais.br": "Brasile",
+      "pais.it": "Italia",
+      "pais.es": "Spagna · Ibiza",
+      "pais.pt": "Portogallo",
+      "pais.fr": "Francia",
+      "pais.ar": "Argentina",
+      "int.cap": "Stagione internazionale · Europa",
+      "depo.eyebrow": "Recensioni",
+      "depo.h2": "La parola di chi l’ha <em>vissuto</em>.",
+      "depo.1": "<blockquote>Al nostro matrimonio hanno saputo cogliere l’atmosfera della festa, scegliere le canzoni giuste e non hanno lasciato nessuno fermo in pista. È stato semplicemente perfetto e ha reso la nostra serata ancora più speciale. Li consigliamo sicuramente, a occhi chiusi!</blockquote><figcaption>Herica Matos <span>· matrimonio · recensione a 5 stelle su Google</span></figcaption>",
+      "depo.2": "<blockquote>Semplicemente incredibile. Non è solo musica, è un’esperienza. Quando suonano, sembra che tutto intorno cambi: l’energia, l’atmosfera, le persone... è difficile persino descriverlo. Lo senti.</blockquote><figcaption>Raphael Vilela Dias <span>· recensione a 5 stelle su Google</span></figcaption>",
+      "depo.3": "<blockquote>Il nostro grazie di cuore ai Be Boots per aver reso il nostro anniversario di matrimonio ancora più speciale! È stato un successo, e la gioia dei nostri invitati ha avuto un tocco speciale grazie a voi. Grati per la collaborazione e per l’eccellente lavoro!</blockquote><figcaption>Cíntia Costa Soares <span>· anniversario di matrimonio · recensione a 5 stelle su Google</span></figcaption>",
+      "depo.4": "<blockquote>I Be Boots sono sempre una garanzia! Musica bellissima, loro magnetici e un intrattenimento davvero coinvolgente. Portano un’atmosfera latina pazzesca e rendono ogni serata indimenticabile!</blockquote><figcaption>Davide D. <span>· Italia · recensione a 5 stelle su Google</span></figcaption>",
+      "depo.5": "<blockquote>Tutti hanno adorato lo show, e anch’io! Siete stati uno dei punti forti della festa. Le canzoni, bellissime... mi è piaciuto tantissimo, me ne sono innamorata.</blockquote><figcaption>Festeggiata <span>· festa dei 15 anni · testimonianza video</span></figcaption>",
+      "depo.note": "Recensioni tradotte dal portoghese, tranne quella di Davide D., scritta in italiano.",
+      "faq.eyebrow": "Domande frequenti",
+      "faq.h2": "Prima di <em>prenotare</em>.",
+      "faq.q1": "Che cosa fanno esattamente i Be Boots all’evento?",
+      "faq.a1": "Uno show completo: mixaggio, voce dal vivo, interazione e performance, con due artisti al comando della pista dall’inizio alla fine. Non è un DJ dietro la console: è la festa che prende vita in mezzo ai tuoi invitati.",
+      "faq.q2": "Suonate lo stile che voglio io?",
+      "faq.a2": "Sì. Dalla disco music al funk brasiliano, dal pop rock al samba, attraversiamo tutti gli stili. La selezione musicale viene disegnata insieme a te, a partire dal tema e dal pubblico del tuo evento.",
+      "faq.q3": "Come funzionano i look e il tema?",
+      "faq.a3": "Ogni evento ha il suo look d’autore, pensato per l’estetica della festa. Se hai un tema, il duo si veste per far parte della scenografia che hai creato.",
+      "faq.q4": "Vi esibite anche fuori da San Paolo? E fuori dal Brasile?",
+      "faq.a4": "Sì. Siamo già a più di 20 città e 6 Paesi, con oltre 170 show internazionali. Trasferte e logistica sono dettagliate nella proposta, senza sorprese.",
+      "faq.q5": "Come funziona l’investimento?",
+      "faq.a5": "Ogni show è disegnato su misura: formato, look, logistica e località incidono sull’investimento. Dopo l’incontro, ricevi una proposta personalizzata per il tuo evento: ogni tema viene rispettato con esclusività e cura, dal repertorio ai look.",
+      "faq.q6": "Come prenoto la mia data?",
+      "faq.a6": "<a data-wa=\"faq\" href=\"#contato\" target=\"_blank\" rel=\"noopener\">Scrivici su WhatsApp</a> indicando la data, la città e il tipo di evento. Confermiamo la disponibilità e fissiamo un incontro per disegnare lo show del tuo evento.",
+      "cta.eyebrow": "Verifica la disponibilità",
+      "cta.h2": "La prossima festa è la <em>tua</em>.",
+      "cta.p": "Dicci la data, la città e il tipo di evento. Ti rispondiamo con la disponibilità e fissiamo un incontro.",
+      "cta.btn": "Scrivi ai Be Boots su WhatsApp",
+      "cta.small": "San Paolo · Brasile ed estero · Benvenuti nel mondo Be Boots",
+      "foot.rk": "Sito realizzato da RK Performance",
+      "a.home": "Be Boots: home",
+      "a.logo": "Be Boots, Musica e Intrattenimento",
+      "a.nav": "Sezioni del sito",
+      "a.hero": "Presentazione",
+      "a.man": "L’esperienza Be Boots",
+      "a.look": "Editoriale Be Boots",
+      "a.fig": "Vini e Zeca",
+      "a.ev": "Tipi di evento",
+      "a.vid": "Video di show reali",
+      "a.botas": "Il sipario del teatro si apre: il lampadario, il marchio Be Boots e due paia di stivali sotto il riflettore",
+      "a.int": "Presenza internazionale",
+      "a.contato": "Contatti",
+      "a.prev": "Video precedente",
+      "a.next": "Video successivo",
+      "a.wa": "Parla con i Be Boots su WhatsApp",
+      "a.play0": "Guarda: Piacere",
+      "a.title0": "Piacere: il duo si presenta",
+      "a.play1": "Guarda: Matrimonio",
+      "a.title1": "Matrimonio: la sposa al centro della festa",
+      "a.play2": "Guarda: Il film ufficiale",
+      "a.title2": "Il film ufficiale: una serata con i Be Boots",
+      "a.play3": "Guarda: Rainbow Fest",
+      "a.title3": "Rainbow Fest: il 700º show",
+      "a.play4": "Guarda: Carnevale di Porto Seguro",
+      "a.title4": "Carnevale di Porto Seguro: apertura ufficiale",
+      "a.play5": "Guarda: Corporate",
+      "a.title5": "Corporate: evento di brand",
+      "a.play6": "Guarda: 15 anni",
+      "a.title6": "15 anni: la testimonianza della festeggiata",
+      "alt.duomo": "Gli stivali del duo in primo piano davanti al Duomo di Milano",
+      "alt.mercedes": "Vini e Zeca con blazer rosso e camicia western davanti a una Mercedes d’epoca",
+      "alt.praia": "Il duo in look d’autore con berretti e occhiali borchiati, in riva al mare al tramonto",
+      "alt.costas": "Il duo di spalle, in camicia nera, con le cuffie e il microfono in mano, sotto una luce dorata",
+      "alt.solo1": "Ritratto editoriale di uno degli artisti dei Be Boots, capelli al vento",
+      "alt.solo2": "Ritratto editoriale di uno degli artisti dei Be Boots, sorridente, capelli in movimento",
+      "alt.urbano": "Il duo Be Boots in un ritratto urbano color seppia, mentre ride",
+      "alt.decks": "Il duo dietro la console, sotto una luce dorata"
+    }
+  };
+  var I18N_LIST = {
+    "marquee": {
+      "en": [
+        "More than music",
+        "A stage experience",
+        "Performance",
+        "Music",
+        "Connection",
+        "Weddings",
+        "Sweet 15",
+        "Milestone birthdays",
+        "Corporate",
+        "Festivals",
+        "São Paulo",
+        "Italy",
+        "Ibiza",
+        "Portugal"
+      ],
+      "es": [
+        "Más que DJs",
+        "Artistas de escenario",
+        "Performance",
+        "Música",
+        "Conexión",
+        "Bodas",
+        "15 años",
+        "Cumpleaños inolvidables",
+        "Corporativo",
+        "Festivales",
+        "São Paulo",
+        "Italia",
+        "Ibiza",
+        "Portugal"
+      ],
+      "it": [
+        "L’eccellenza dell’intrattenimento dal vivo",
+        "Performance",
+        "Musica",
+        "Emozione",
+        "Matrimoni",
+        "Feste dei 15 anni",
+        "Compleanni importanti",
+        "Corporate",
+        "Festival",
+        "San Paolo",
+        "Italia",
+        "Ibiza",
+        "Portogallo"
+      ]
+    }
+  };
+  var WA_MSG = {
+    "pt": {
+      "site": "Olá, Be Boots! Vi o site de vocês e quero ver a disponibilidade.\nData: \nCidade/Local: \nTipo de evento: ",
+      "videos": "Olá, Be Boots! Vi os vídeos e quero consultar a disponibilidade.\nData: \nCidade/Local: \nTipo de evento: ",
+      "faq": "Olá, Be Boots! Quero consultar a disponibilidade da minha data.\nData: \nCidade/Local: \nTipo de evento: "
+    },
+    "en": {
+      "site": "Hello, Be Boots! I saw your website and would like to check your availability.\nDate: \nCity/Venue: \nType of event: ",
+      "videos": "Hello, Be Boots! I watched your videos and would like to check your availability.\nDate: \nCity/Venue: \nType of event: ",
+      "faq": "Hello, Be Boots! I would like to check your availability for my date.\nDate: \nCity/Venue: \nType of event: "
+    },
+    "es": {
+      "site": "¡Hola, Be Boots! Vi su sitio web y quiero consultar la disponibilidad.\nFecha: \nCiudad/Lugar: \nTipo de evento: ",
+      "videos": "¡Hola, Be Boots! Vi los videos y quiero consultar la disponibilidad.\nFecha: \nCiudad/Lugar: \nTipo de evento: ",
+      "faq": "¡Hola, Be Boots! Quiero consultar la disponibilidad para mi fecha.\nFecha: \nCiudad/Lugar: \nTipo de evento: "
+    },
+    "it": {
+      "site": "Ciao, Be Boots! Ho visto il vostro sito e vorrei verificare la disponibilità.\nData: \nCittà/Location: \nTipo di evento: ",
+      "videos": "Ciao, Be Boots! Ho visto i video e vorrei verificare la disponibilità.\nData: \nCittà/Location: \nTipo di evento: ",
+      "faq": "Ciao, Be Boots! Vorrei verificare la disponibilità per la mia data.\nData: \nCittà/Location: \nTipo di evento: "
+    }
+  };
+  var LANGS = ['pt', 'en', 'es', 'it'];
+  var HTML_LANG = { pt: 'pt-BR', en: 'en', es: 'es', it: 'it' };
+  var lang = 'pt';
+  var metaDesc = document.querySelector('meta[name="description"]');
+  var ORIG = { 'ui.menu': 'Menu', 'ui.close': 'Fechar', 'meta.title': document.title, 'meta.desc': metaDesc ? metaDesc.getAttribute('content') : '' };
+  var ORIG_LIST = {};
+  var cadaAttr = function (el, fn) { el.getAttribute('data-i18n-attr').split(';').forEach(function (par) { var a = par.split(':'); fn(a[0], a[1]); }); };
+  document.querySelectorAll('[data-i18n]').forEach(function (el) { var k = el.getAttribute('data-i18n'); if (!(k in ORIG)) ORIG[k] = el.innerHTML; });
+  document.querySelectorAll('[data-i18n-attr]').forEach(function (el) { cadaAttr(el, function (a, k) { if (!(k in ORIG)) ORIG[k] = el.getAttribute(a); }); });
+  document.querySelectorAll('[data-i18n-list]').forEach(function (el) {
+    var itens = Array.prototype.slice.call(el.children).map(function (c) { return c.innerHTML; });
+    ORIG_LIST[el.getAttribute('data-i18n-list')] = itens.slice(0, itens.length / 2);
+  });
+  var tr = function (k) { var d = I18N[lang]; return (d && d[k] != null) ? d[k] : ORIG[k]; };
+  var aplicarIdioma = function (novo, lembrar) {
+    lang = LANGS.indexOf(novo) > -1 ? novo : 'pt';
+    root.setAttribute('lang', HTML_LANG[lang]);
+    document.querySelectorAll('[data-i18n]').forEach(function (el) { var v = tr(el.getAttribute('data-i18n')); if (v != null && el.innerHTML !== v) el.innerHTML = v; });
+    document.querySelectorAll('[data-i18n-attr]').forEach(function (el) { cadaAttr(el, function (a, k) { var v = tr(k); if (v != null) el.setAttribute(a, v); }); });
+    document.querySelectorAll('[data-i18n-list]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-list');
+      var itens = (I18N_LIST[k] && I18N_LIST[k][lang]) || ORIG_LIST[k];
+      var html = itens.map(function (x) { return '<span>' + x + '</span>'; }).join('');
+      el.innerHTML = html + html;
+    });
+    document.querySelectorAll('a[data-wa]').forEach(function (a) {
+      var m = WA_MSG[lang] && WA_MSG[lang][a.getAttribute('data-wa')];
+      if (m) a.setAttribute('href', 'https://wa.me/5511988652826?text=' + encodeURIComponent(m));
+    });
+    document.title = tr('meta.title');
+    if (metaDesc) metaDesc.setAttribute('content', tr('meta.desc'));
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    var mb = document.getElementById('menuBtn'), mf = document.getElementById('menuFull');
+    if (mb && mf) mb.textContent = mf.classList.contains('open') ? tr('ui.close') : tr('ui.menu');
+    if (lembrar) {
+      try { localStorage.setItem('bb_lang', lang); } catch (e) {}
+      try {
+        var u = new URL(window.location.href);
+        if (lang === 'pt') u.searchParams.delete('lang'); else u.searchParams.set('lang', lang);
+        window.history.replaceState(null, '', u.pathname + u.search + u.hash);
+      } catch (e2) {}
+    }
+  };
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { aplicarIdioma(b.getAttribute('data-lang'), true); }); });
+  // ordem de decisão: ?lang= do link → escolha guardada → idioma do navegador.
+  // Quem tem português na lista fica no original; idioma que não atendemos (francês, alemão...) cai no inglês.
+  (function () {
+    var daUrl = null, salvo = null;
+    try { daUrl = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase(); } catch (e) {}
+    try { salvo = localStorage.getItem('bb_lang'); } catch (e) {}
+    var prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'pt']).map(function (x) { return String(x).slice(0, 2).toLowerCase(); });
+    var doNavegador = 'en';
+    if (prefs.indexOf('pt') > -1) doNavegador = 'pt';
+    else { for (var i = 0; i < prefs.length; i++) { if (LANGS.indexOf(prefs[i]) > -1) { doNavegador = prefs[i]; break; } } }
+    var inicial = LANGS.indexOf(daUrl) > -1 ? daUrl : (LANGS.indexOf(salvo) > -1 ? salvo : doNavegador);
+    if (inicial !== 'pt') aplicarIdioma(inicial, false);
+  })();
 
   // cabeçalho vira vidro depois do hero
   var header = document.getElementById('topo');
@@ -872,7 +1489,7 @@
   menu.setAttribute('inert', '');
   var setMenu = function (open) {
     menu.classList.toggle('open', open);
-    menuBtn.setAttribute('aria-expanded', open); menuBtn.textContent = open ? 'Fechar' : 'Menu';
+    menuBtn.setAttribute('aria-expanded', open); menuBtn.textContent = open ? tr('ui.close') : tr('ui.menu');
     if (open) menu.removeAttribute('inert'); else menu.setAttribute('inert', '');
   };
   menuBtn.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
