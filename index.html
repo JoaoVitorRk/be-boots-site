@@ -217,7 +217,7 @@
      cantos e grade quente no vídeo (tira o neon). Sem wordmark, sem "mais do que DJs". */
   .hero { position: relative; min-height: 100svh; display: grid; align-content: end; overflow: hidden; background: var(--preto); padding-bottom: clamp(100px, 12vh, 150px); }
   .hero-bg { position: absolute; inset: 0; }
-  .hero-bg video { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) sepia(0.24) contrast(1.06) brightness(0.94); }
+  .hero-bg video, .hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.72) sepia(0.24) contrast(1.06) brightness(0.94); }
   .hero-bg::after {
     content: ""; position: absolute; inset: 0;
     background:
@@ -577,7 +577,13 @@
   <!-- ======================= HERO — a fama primeiro ======================= -->
   <section class="hero" aria-label="Apresentação" data-i18n-attr="aria-label:a.hero">
     <div class="hero-bg" aria-hidden="true">
-      <video id="heroVideo" autoplay muted loop playsinline preload="auto"></video>
+      <!-- a imagem é o pôster do vídeo (abre a página); o vídeo entra por cima depois do load -->
+      <picture>
+        <source media="(max-width: 820px)" type="image/webp" srcset="media/videos/poster-hero-mobile-web.webp" width="720" height="1280">
+        <source media="(max-width: 820px)" srcset="media/videos/poster-hero-mobile.jpg" width="720" height="1280">
+        <img src="media/videos/poster-hero-desktop.jpg" alt="" width="1280" height="720" fetchpriority="high">
+      </picture>
+      <video id="heroVideo" muted loop playsinline preload="none"></video>
     </div>
     <div class="hero-inner">
       <h1 data-i18n="hero.h1"><span class="k">O seu evento não precisa de mais um DJ.</span><span class="l">Precisa de um <em>show</em>.</span></h1>
@@ -791,7 +797,7 @@
 
   <!-- ======================= O NOME (botas no palco) ======================= -->
   <div class="botas" role="img" data-i18n-attr="aria-label:a.botas" aria-label="A cortina do teatro se abre: o lustre, a marca Be Boots e dois pares de botas sob o foco de luz">
-    <video muted playsinline preload="metadata" width="1080" height="1920" poster="media/videos/poster-boots.jpg" aria-hidden="true"><source src="media/videos/boots.mp4" type="video/mp4"></video>
+    <video muted playsinline preload="none" width="1080" height="1920" poster="media/videos/poster-boots.jpg" aria-hidden="true"><source src="media/videos/boots.mp4" type="video/mp4"></video>
   </div>
 
   <div class="to-light" aria-hidden="true"></div>
@@ -1527,14 +1533,21 @@
   var heroVideo = document.getElementById('heroVideo');
   var botasVideo = document.querySelector('.botas video');
   var mqMobile = window.matchMedia('(max-width: 820px)');
+  // O vídeo só entra depois do load (ou do primeiro toque): até lá o pôster da <picture> segura a tela
+  // e abre a página rápido no 4G. No celular vai a versão leve (1,5 MB).
+  var heroLiberado = false;
   var aplicarHero = function () {
-    if (!heroVideo) return;
-    var poster = mqMobile.matches ? 'media/videos/poster-hero-mobile.jpg' : 'media/videos/poster-hero-desktop.jpg';
-    heroVideo.poster = poster;
-    var src = mqMobile.matches ? 'media/videos/hero-mobile.mp4' : 'media/videos/hero-desktop.mp4';
-    if (heroVideo.getAttribute('src') !== src) { heroVideo.src = src; heroVideo.play().catch(function () {}); }
+    if (!heroVideo || !heroLiberado) return;
+    var capa = document.querySelector('.hero-bg img');
+    if (capa) heroVideo.poster = capa.currentSrc || capa.src;
+    var src = mqMobile.matches ? 'media/videos/hero-mobile-leve.mp4' : 'media/videos/hero-desktop.mp4';
+    if (heroVideo.getAttribute('src') !== src) { heroVideo.preload = 'auto'; heroVideo.autoplay = true; heroVideo.src = src; heroVideo.play().catch(function () {}); }
   };
-  aplicarHero();
+  var liberarHero = function () { if (heroLiberado) return; heroLiberado = true; aplicarHero(); };
+  if (document.readyState === 'complete') liberarHero();
+  else window.addEventListener('load', liberarHero);
+  document.addEventListener('touchstart', liberarHero, { passive: true });
+  document.addEventListener('pointerdown', liberarHero, { passive: true });
   if (mqMobile.addEventListener) mqMobile.addEventListener('change', aplicarHero);
   else if (mqMobile.addListener) mqMobile.addListener(aplicarHero);
 
@@ -1560,6 +1573,11 @@
     });
   };
   if (botas && botasVideo && 'IntersectionObserver' in window) {
+    // o vídeo da cortina só começa a baixar quando a seção está a uma tela de distância
+    var aquecer = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { botasVideo.preload = 'auto'; aquecer.disconnect(); }
+    }, { rootMargin: '0px 0px 100% 0px' });
+    aquecer.observe(botas);
     new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting && e.intersectionRatio >= 0.4) { botasNaTela = true; abrirCortina(); }
